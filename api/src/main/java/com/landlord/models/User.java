@@ -4,6 +4,7 @@ package com.landlord.models;
 import com.landlord.models.base.ModelBase;
 import com.landlord.models.base.UserType;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class User extends ModelBase {
@@ -15,10 +16,11 @@ public class User extends ModelBase {
 
     }
 
-    public User(String userName, Double rating, UserType userType, List<Estate> estates) {
+    public User(String userName, Double rating, UserType userType) {
+        this.setId(userName);
         this.rating = rating;
         this.userType = userType;
-        this.estates = estates;
+        this.estates = new LinkedList<>();
     }
 
     public Double getRating() {

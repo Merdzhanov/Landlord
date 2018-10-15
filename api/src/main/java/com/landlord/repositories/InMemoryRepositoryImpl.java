@@ -30,16 +30,18 @@ public class InMemoryRepositoryImpl<T extends ModelBase> implements GenericRepos
     @Override
     public T findById(String id) {
         return this.items.stream()
-                .filter(item -> item.getId() == id)
+                .filter(item -> item.getId().equals(id))
                 .findFirst()
                 .orElse(null);
     }
 
     @Override
-    public void add(T mushroom) {
-        String nextId = this.getNextId();
-        mushroom.setId(nextId);
-        this.items.add(mushroom);
+    public void add(T user) {
+        if(user.getId().isEmpty()) {
+            String nextId = this.getNextId();
+            user.setId(nextId);
+        }
+        this.items.add(user);
     }
 
     private String getNextId() {
