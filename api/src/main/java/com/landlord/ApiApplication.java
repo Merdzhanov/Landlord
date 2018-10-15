@@ -1,4 +1,4 @@
-package com.landlord.api;
+package com.landlord;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
