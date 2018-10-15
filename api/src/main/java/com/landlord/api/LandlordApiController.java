@@ -38,8 +38,7 @@ public class LandlordApiController {
         method = RequestMethod.GET
     )
     public UserDetailsViewModel getUserById(@PathVariable("id") String idString) {
-        String id = idString;
-        User model = this.landlordService.findById(id);
+        User model = this.landlordService.findById(idString);
         return this.mapper.mapDetails(model);
     }
 
