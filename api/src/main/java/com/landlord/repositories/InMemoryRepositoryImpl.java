@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@Repository
+//@Repository
 public class InMemoryRepositoryImpl<T extends ModelBase> implements GenericRepository<T> {
     private final Class<T> klass;
     private List<T> items;
