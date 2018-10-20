@@ -1,17 +1,12 @@
 package com.landlord;
 
+import com.landlord.models.ChatMessage;
+import com.landlord.models.Estate;
 import com.landlord.models.User;
-import com.landlord.repositories.base.GenericRepository;
 import org.hibernate.SessionFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import java.util.Arrays;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-
-import static com.landlord.models.base.UserType.LANDLORD;
-import static com.landlord.models.base.UserType.TENANT;
 
 
 @SpringBootApplication
@@ -34,6 +29,8 @@ public class ApiApplication {
         return new org.hibernate.cfg.Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(User.class)
+                .addAnnotatedClass(ChatMessage.class)
+                .addAnnotatedClass(Estate.class)
                 .buildSessionFactory();
     }
 
