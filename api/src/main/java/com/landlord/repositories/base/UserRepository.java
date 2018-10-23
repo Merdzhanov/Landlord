@@ -5,18 +5,9 @@ import com.landlord.models.base.UserType;
 
 import java.util.List;
 
-public interface UserRepository {
-
-    List getAll();
-
-    User getById(int id);
+public interface UserRepository  {
 
     List getByType(UserType type);
 
-    void update(int id, User user);
-
-    void delete(int id);
-
-    void create(User user);
 
 }

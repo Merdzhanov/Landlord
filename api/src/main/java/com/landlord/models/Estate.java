@@ -1,48 +1,59 @@
 package com.landlord.models;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Date;
 
-
+@EnableAutoConfiguration
+@ComponentScan
+@Entity
+@Table(name = "estates")
 public class Estate {
 
-//    @Id
-//    @Column(name = "EstateID")
-    private String EstateID;
+    @Id
+    @Column(name = "EstateID")
+    private String estateID;
 
-//    @Column(name = "Description")
+    @Column(name = "Description")
     private String description;
 
-//    @Column(name = "Address")
+    @Column(name = "Address")
     private String address;
 
-//    @Column(name = "OwedAmount")
+    @Column(name = "OwedAmount")
     private BigDecimal owedAmount;
 
-//    @Column(name = "DueDate")
+    @Column(name = "DueDate")
     private Date dueDate;
-//    private List<ChatMessage> messageList;
+
 
 //    @ManyToOne
 //    @JoinColumn(name="LandlordID", nullable=false)
-    private User landlord;
+//    private User landlord;
 
 //    @ManyToOne
 //    @JoinColumn(name="TenantID", nullable=false)
-    private User tenant;
+//    private User tenant;
+
+    //    private List<ChatMessage> messageList;
 
     public Estate() {
     }
 
-    public Estate(String description, String address, User landlord, User tenant, BigDecimal owedAmount, Date dueDate) {
+    public Estate(String estateID, String description, String address, BigDecimal owedAmount, Date dueDate) {
+        this.estateID = estateID;
         this.description = description;
         this.address = address;
-        this.landlord = landlord;
-        this.tenant = tenant;
         this.owedAmount = owedAmount;
         this.dueDate = dueDate;
-//        this.messageList=new LinkedList<>();
     }
+
 
     public String getDescription() {
         return description;
@@ -60,13 +71,13 @@ public class Estate {
         this.address = address;
     }
 
-    public User getLandlord() {
-        return landlord;
-    }
-
-    public void setLandlord(User landlord) {
-        this.landlord = landlord;
-    }
+//    public User getLandlord() {
+//        return landlord;
+//    }
+//
+//    public void setLandlord(User landlord) {
+//        this.landlord = landlord;
+//    }
 
     public BigDecimal getOwedAmount() {
         return owedAmount;
@@ -85,20 +96,20 @@ public class Estate {
     }
 
     public String getEstateID() {
-        return EstateID;
+        return estateID;
     }
 
     public void setEstateID(String estateID) {
-        EstateID = estateID;
+        this.estateID = estateID;
     }
 
-    public User getTenant() {
-        return tenant;
-    }
-
-    public void setTenant(User tenant) {
-        this.tenant = tenant;
-    }
+//    public User getTenant() {
+//        return tenant;
+//    }
+//
+//    public void setTenant(User tenant) {
+//        this.tenant = tenant;
+//    }
 
 //    public List<ChatMessage> getMessageList() {
 //        return messageList;
