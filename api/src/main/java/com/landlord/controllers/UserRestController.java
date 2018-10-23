@@ -3,7 +3,7 @@ package com.landlord.controllers;
 
 import com.landlord.models.User;
 import com.landlord.models.base.UserType;
-import com.landlord.services.UserService;
+import com.landlord.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,10 +12,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/users")
 public class UserRestController {
-    private final UserService service;
+    private final UserServiceImpl service;
 
     @Autowired
-    public UserRestController(UserService service) {
+    public UserRestController(UserServiceImpl service) {
         this.service = service;
     }
 
@@ -25,13 +25,13 @@ public class UserRestController {
     }
 
     @GetMapping
-    public List getAllUsers() {
-        return service.getAllUsers();
+    public List getAll() {
+        return service.getAll();
     }
 
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable int id) {
-        return service.getUserById(id);
+    public User getById(@PathVariable int id) {
+        return service.getById(id);
     }
 
     @GetMapping("/type/{type}")
