@@ -2,11 +2,9 @@ package com.landlord.controllers;
 
 
 import com.landlord.models.User;
-
+import com.landlord.models.base.UserType;
 import com.landlord.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +25,7 @@ public class UserRestController {
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
+    public List getAllUsers() {
         return service.getAllUsers();
     }
 
@@ -37,7 +35,7 @@ public class UserRestController {
     }
 
     @GetMapping("/type/{type}")
-    List<User> getByType(@PathVariable String type) {
+    List<User> getByType(@PathVariable UserType type) {
         return service.getByType(type);
     }
 
