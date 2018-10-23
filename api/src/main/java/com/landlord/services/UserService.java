@@ -1,6 +1,7 @@
 package com.landlord.services;
 
 import com.landlord.models.User;
+import com.landlord.models.base.UserType;
 import com.landlord.repositories.UserSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +18,11 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> getAllUsers() {
+    public List getAllUsers() {
         return this.userRepository.getAll();
     }
 
-    public List<User> getByType (String type) {
+    public List<User> getByType (UserType type) {
         return this.userRepository.getByType(type);
     }
 
@@ -36,7 +37,7 @@ public class UserService {
     public void update(int id, User user) {
         userRepository.update(id, user);
     }
-    
+
     public void delete(int id) {
         userRepository.delete(id);
     }

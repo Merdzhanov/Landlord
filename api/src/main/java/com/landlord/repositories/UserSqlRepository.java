@@ -1,26 +1,29 @@
 package com.landlord.repositories;
 
 import com.landlord.models.User;
+import com.landlord.models.base.UserType;
 import com.landlord.repositories.base.UserRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class UserSqlRepository implements UserRepository {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
+    @Autowired
+    public UserSqlRepository(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public void create(User user) {
         try (
-                Session session = sessionFactory.openSession();
+                Session session = sessionFactory.openSession()
         ) {
             session.beginTransaction();
             session.save(user);
@@ -32,10 +35,10 @@ public class UserSqlRepository implements UserRepository {
     }
 
     @Override
-    public List<User> getAll() {
-        List<User> result = new ArrayList<>();
+    public List getAll() {
+        List result;
         try (
-                Session session = sessionFactory.openSession();
+                Session session = sessionFactory.openSession()
         ) {
             session.beginTransaction();
             result = session.createQuery("from User").list();
@@ -49,9 +52,9 @@ public class UserSqlRepository implements UserRepository {
 
     @Override
     public User getById(int id) {
-        User result = null;
+        User result;
         try (
-                Session session = sessionFactory.openSession();
+                Session session = sessionFactory.openSession()
         ) {
             session.beginTransaction();
             result = session.get(User.class, id);
@@ -65,10 +68,10 @@ public class UserSqlRepository implements UserRepository {
     }
 
     @Override
-    public List<User> getByType (String type) {
-        List<User> result = new ArrayList<>();
+    public List getByType (UserType type) {
+        List result;
         try (
-                Session session = sessionFactory.openSession();
+                Session session = sessionFactory.openSession()
         ) {
             session.beginTransaction();
             result = session.createQuery("from User where userType = :userType")
@@ -82,7 +85,7 @@ public class UserSqlRepository implements UserRepository {
     @Override
     public void update(int id, User user) {
         try (
-                Session session = sessionFactory.openSession();
+                Session session = sessionFactory.openSession()
         ) {
             session.beginTransaction();
             User userToChange = session.get(User.class, id);
@@ -99,7 +102,7 @@ public class UserSqlRepository implements UserRepository {
     @Override
     public void delete(int id) {
         try (
-                Session session = sessionFactory.openSession();
+                Session session = sessionFactory.openSession()
         ) {
             session.beginTransaction();
             User user = session.get(User.class, id);
