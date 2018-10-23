@@ -1,10 +1,8 @@
 package com.landlord.models;
 
-import com.landlord.models.base.ModelBase;
-
 import java.util.Date;
 
-public class ChatMessage extends ModelBase {
+public class ChatMessage {
     private String message;
     private String tenantUserName;
     private String landlordUserName;

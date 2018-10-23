@@ -1,28 +1,47 @@
 package com.landlord.models;
 
-import com.landlord.models.base.ModelBase;
-
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
-public class Estate  extends ModelBase {
+
+public class Estate {
+
+//    @Id
+//    @Column(name = "EstateID")
+    private String EstateID;
+
+//    @Column(name = "Description")
     private String description;
-    private String address;
-    private User landlord;
-    private BigDecimal owedAmount;
-    private Date dueDate;
-    private List<ChatMessage> messageList;
 
-    public Estate(String description, String address, User landlord, BigDecimal owedAmount, Date dueDate) {
+//    @Column(name = "Address")
+    private String address;
+
+//    @Column(name = "OwedAmount")
+    private BigDecimal owedAmount;
+
+//    @Column(name = "DueDate")
+    private Date dueDate;
+//    private List<ChatMessage> messageList;
+
+//    @ManyToOne
+//    @JoinColumn(name="LandlordID", nullable=false)
+    private User landlord;
+
+//    @ManyToOne
+//    @JoinColumn(name="TenantID", nullable=false)
+    private User tenant;
+
+    public Estate() {
+    }
+
+    public Estate(String description, String address, User landlord, User tenant, BigDecimal owedAmount, Date dueDate) {
         this.description = description;
         this.address = address;
         this.landlord = landlord;
+        this.tenant = tenant;
         this.owedAmount = owedAmount;
         this.dueDate = dueDate;
-        this.messageList=new LinkedList<>();
+//        this.messageList=new LinkedList<>();
     }
 
     public String getDescription() {
@@ -65,11 +84,27 @@ public class Estate  extends ModelBase {
         this.dueDate = dueDate;
     }
 
-    public List<ChatMessage> getMessageList() {
-        return messageList;
+    public String getEstateID() {
+        return EstateID;
     }
 
-    public void setMessageList(List<ChatMessage> messageList) {
-        this.messageList = messageList;
+    public void setEstateID(String estateID) {
+        EstateID = estateID;
     }
+
+    public User getTenant() {
+        return tenant;
+    }
+
+    public void setTenant(User tenant) {
+        this.tenant = tenant;
+    }
+
+//    public List<ChatMessage> getMessageList() {
+//        return messageList;
+//    }
+//
+//    public void setMessageList(List<ChatMessage> messageList) {
+//        this.messageList = messageList;
+//    }
 }
