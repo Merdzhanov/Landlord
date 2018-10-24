@@ -32,6 +32,10 @@ public class EstateRestController {
         return service.getById(id);
     }
 
+    @GetMapping("/user/{userName}")
+    public List getEstateByUser(@PathVariable String userName) {
+        return service.getEstateByUser(userName);
+    }
 
     @PutMapping("/{id}")
     public void update(@PathVariable int id, @RequestBody Estate estate) {
@@ -42,4 +46,7 @@ public class EstateRestController {
     public void delete(@PathVariable int id) {
         service.delete(id);
     }
+
+
+
 }

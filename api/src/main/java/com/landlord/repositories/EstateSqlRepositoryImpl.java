@@ -1,12 +1,14 @@
 package com.landlord.repositories;
 
 import com.landlord.models.Estate;
+import com.landlord.models.User;
 import com.landlord.repositories.base.GenericRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -95,6 +97,25 @@ public class EstateSqlRepositoryImpl implements GenericRepository<Estate> {
             System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
+    }
+
+
+    public List getEstatesByUser(String userName) {
+        List result;
+        try (
+                Session session = sessionFactory.openSession();
+        ) {
+            session.beginTransaction();
+            result = session.createQuery("from Estate where landlord = :userName or tenant = :userName")
+                    .setParameter("userName", userName)
+                    .list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
+        return result;
+
     }
 
 
