@@ -35,7 +35,7 @@ public class UserRestController {
     }
 
     @GetMapping("/type/{type}")
-    List<User> getByType(@PathVariable UserType type) {
+    List getByType(@PathVariable UserType type) {
         return service.getByType(type);
     }
 
@@ -48,4 +48,5 @@ public class UserRestController {
     public void delete(@PathVariable int id) {
         service.delete(id);
     }
+
 }

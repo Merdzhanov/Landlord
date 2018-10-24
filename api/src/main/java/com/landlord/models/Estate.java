@@ -18,38 +18,37 @@ public class Estate {
 
     @Id
     @Column(name = "EstateID")
-    private String estateID;
+    private int estateID;
 
-    @Column(name = "Description")
+    @Column(name = "Description", nullable=false)
     private String description;
 
-    @Column(name = "Address")
+    @Column(name = "Address", nullable=false)
     private String address;
 
-    @Column(name = "OwedAmount")
+    @Column(name = "OwedAmount", nullable=false)
     private BigDecimal owedAmount;
 
     @Column(name = "DueDate")
     private Date dueDate;
 
+    @Column(name= "Landlord", nullable=false)
+    private String landlord;
 
-//    @ManyToOne
-//    @JoinColumn(name="LandlordID", nullable=false)
-//    private User landlord;
-
-//    @ManyToOne
-//    @JoinColumn(name="TenantID", nullable=false)
-//    private User tenant;
+    @Column(name= "Tenant")
+    private String tenant;
 
     //    private List<ChatMessage> messageList;
 
     public Estate() {
     }
 
-    public Estate(String estateID, String description, String address, BigDecimal owedAmount, Date dueDate) {
+    public Estate(int estateID, String description, String address, String landlord, String tenant, BigDecimal owedAmount, Date dueDate) {
         this.estateID = estateID;
         this.description = description;
         this.address = address;
+        this.landlord = landlord;
+        this.tenant = tenant;
         this.owedAmount = owedAmount;
         this.dueDate = dueDate;
     }
@@ -71,13 +70,21 @@ public class Estate {
         this.address = address;
     }
 
-//    public User getLandlord() {
-//        return landlord;
-//    }
-//
-//    public void setLandlord(User landlord) {
-//        this.landlord = landlord;
-//    }
+    public String getLandlord() {
+        return landlord;
+    }
+
+    public void setLandlord(String landlord) {
+        this.landlord = landlord;
+    }
+
+    public String getTenant() {
+        return tenant;
+    }
+
+    public void setTenant(String tenant) {
+        this.tenant = tenant;
+    }
 
     public BigDecimal getOwedAmount() {
         return owedAmount;
@@ -95,11 +102,11 @@ public class Estate {
         this.dueDate = dueDate;
     }
 
-    public String getEstateID() {
+    public int getEstateID() {
         return estateID;
     }
 
-    public void setEstateID(String estateID) {
+    public void setEstateID(int estateID) {
         this.estateID = estateID;
     }
 

@@ -116,4 +116,19 @@ public class UserSqlRepositoryImpl implements GenericRepository<User>, UserRepos
         return result;
     }
 
+    public User getByUserName(String userName) {
+        User result = null;
+        try (
+                Session session = sessionFactory.openSession();
+        ) {
+            session.beginTransaction();
+            result = (User) session.createQuery("from User where userName  = :userName")
+                    .setParameter("userName", userName)
+                    .getSingleResult();
+            session.getTransaction().commit();
+        }
+        return result;
+
+    }
+
 }

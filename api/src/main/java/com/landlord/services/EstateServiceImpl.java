@@ -19,7 +19,7 @@ public class EstateServiceImpl implements GenericRepository<Estate> {
         }
 
         @Override
-        public List<Estate> getAll() {
+        public List getAll() {
             return this.estateRepository.getAll();
         }
 
@@ -43,5 +43,8 @@ public class EstateServiceImpl implements GenericRepository<Estate> {
             estateRepository.delete(id);
         }
 
+        public List getEstateByUser(String userName){
+            return this.estateRepository.getEstatesByUser(userName);
+        }
 
 }
