@@ -8,18 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-
 @SpringBootApplication
 public class ApiApplication {
-//    @Autowired
-//    public ApiApplication(GenericRepository<User> usersRepository) {
-//        List<User> initialUsers = Arrays.asList(
-//                new User("Rumi", 4.75, LANDLORD),
-//                new User("Kosio", 3.5, TENANT)
-//        );
-//        initialUsers
-//                .forEach(usersRepository::add);
-//    }
     public static void main(String[] args) {
         SpringApplication.run(ApiApplication.class, args);
     }
@@ -33,5 +23,4 @@ public class ApiApplication {
                 .addAnnotatedClass(Estate.class)
                 .buildSessionFactory();
     }
-
 }

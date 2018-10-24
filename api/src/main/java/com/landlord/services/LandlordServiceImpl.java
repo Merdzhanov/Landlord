@@ -1,6 +1,8 @@
 package com.landlord.services;
 
+import com.landlord.models.Estate;
 import com.landlord.models.User;
+import com.landlord.models.base.ModelBase;
 import com.landlord.repositories.base.GenericRepository;
 import com.landlord.services.base.LandlordService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,26 +13,55 @@ import java.util.List;
 @Service
 public class LandlordServiceImpl implements LandlordService {
 
-    private final GenericRepository<User> userRepository;
+    private final GenericRepository<ModelBase> landlordRepository;
 
     @Autowired
-    public LandlordServiceImpl(GenericRepository<User> userRepository) {
-        this.userRepository = userRepository;
+    public LandlordServiceImpl(GenericRepository<ModelBase> landlordRepository) {
+        this.landlordRepository = landlordRepository;
     }
 
     @Override
-    public List<User> getAll() {
-        return this.userRepository.findAll();
+    public void create(ModelBase item) {
+        this.landlordRepository.create(item);
     }
 
     @Override
-    public User findById(String id) {
-        return this.userRepository.findById(id);
+    public List<User> getAllUsers() {
+        return this.landlordRepository.getAllUsers();
     }
 
     @Override
-    public User create(User user) {
-        userRepository.add(user);
-        return user;
+    public User getByUserName(String userName) {
+        return this.landlordRepository.getByUserName(userName);
+    }
+
+    @Override
+    public List<Estate> getAllEstates() {
+        return this.landlordRepository.getAllEstates();
+    }
+
+    @Override
+    public List<Estate> getEstatesByUser(String userName) {
+        return this.landlordRepository.getEstatesByUser(userName);
+    }
+
+    @Override
+    public Estate getEstateByID(int id) {
+        return this.landlordRepository.getEstateByID(id);
+    }
+
+    @Override
+    public ModelBase getById(int id) {
+        return this.getById(id);
+    }
+
+    @Override
+    public void update(int id, ModelBase item) {
+        this.landlordRepository.update(id, item);
+    }
+
+    @Override
+    public void delete(int id) {
+        this.landlordRepository.delete(id);
     }
 }

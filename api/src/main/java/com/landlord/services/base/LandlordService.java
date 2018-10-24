@@ -1,13 +1,27 @@
 package com.landlord.services.base;
 
+import com.landlord.models.Estate;
 import com.landlord.models.User;
+import com.landlord.models.base.ModelBase;
 
 import java.util.List;
 
-public interface LandlordService {
-    List<User> getAll();
+public interface LandlordService <T extends ModelBase> {
+        void create(T item);
 
-    User findById(String id);
+        List<User> getAllUsers();
 
-    User create(User user);
+        User getByUserName(String userName);
+
+        List<Estate> getAllEstates();
+
+        List<Estate> getEstatesByUser(String userName);
+
+        Estate getEstateByID(int id);
+
+        T getById(int id);
+
+        void update(int id, T item);
+
+        void delete(int id);
 }

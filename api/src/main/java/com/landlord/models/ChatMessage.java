@@ -1,34 +1,51 @@
 package com.landlord.models;
 
 import com.landlord.models.base.ModelBase;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
+import javax.persistence.*;
 import java.util.Date;
 
-public class ChatMessage extends ModelBase {
+@Entity
+@EnableAutoConfiguration
+@Table(name = "ChatMessages")
+public class ChatMessage implements ModelBase {
+    @Id
+    @GeneratedValue
+    @Column(name = "MessageID", updatable = false, nullable = false, insertable=false)
+    public int id;
+
+    @Column(name="Message")
     private String message;
-    private String tenantUserName;
-    private String landlordUserName;
+
+    @Column(name="Date")
     private Date date;
-    private String sender;
+
+    @ManyToOne
+    @JoinColumn(name = "EstateID")
+    private Estate estate;
+
+    @ManyToOne
+    @JoinColumn(name = "UserID")
+    private User sender;
 
 
     public ChatMessage() {
     }
 
-    public ChatMessage(String message, String tenantUserName, String landlordUserName, Date date, String sender) {
+    public ChatMessage(String message, Date date, Estate estate, User sender) {
         this.message = message;
-        this.tenantUserName = tenantUserName;
-        this.landlordUserName = landlordUserName;
         this.date = date;
+        this.estate = estate;
         this.sender = sender;
     }
 
-    public Date getDate() {
-        return date;
+    public int getId() {
+        return id;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getMessage() {
@@ -39,27 +56,27 @@ public class ChatMessage extends ModelBase {
         this.message = message;
     }
 
-    public String getTenantUserName() {
-        return tenantUserName;
+    public Date getDate() {
+        return date;
     }
 
-    public void setTenantUserName(String tenantUserName) {
-        this.tenantUserName = tenantUserName;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public String getLandlordUserName() {
-        return landlordUserName;
+    public Estate getEstate() {
+        return estate;
     }
 
-    public void setLandlordUserName(String landlordUserName) {
-        this.landlordUserName = landlordUserName;
+    public void setEstate(Estate estate) {
+        this.estate = estate;
     }
 
-    public String getSender() {
+    public User getSender() {
         return sender;
     }
 
-    public void setSender(String sender) {
+    public void setSender(User sender) {
         this.sender = sender;
     }
 }

@@ -1,51 +1,44 @@
 package com.landlord.utils;
 
+import com.landlord.dto.UserDTO;
 import com.landlord.models.User;
-import com.landlord.utils.base.UserMapper;
-import com.landlord.viewmodels.UserDetailsViewModel;
-import com.landlord.viewmodels.UserViewModel;
+import com.landlord.utils.base.DTOMapper;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class UserMapperImpl implements UserMapper {
-    @Override
-    public UserViewModel map(User model) {
-        UserViewModel vm = new UserViewModel();
-        vm.estates=model.getEstates();
-        vm.rating=model.getRating();
-        vm.userName=model.getId();
-        vm.userType=model.getUserType();
+public class UserMapperImpl  implements DTOMapper<User, UserDTO> {
 
-        return vm;
+
+    @Override
+    public UserDTO map(User model) {
+        UserDTO dtoModel = new UserDTO();
+        dtoModel.id = model.getId();
+        dtoModel.userName=model.getUserName();
+        dtoModel.rating = model.getRating();
+        dtoModel.userType = model.getUserType();
+       // dtoModel.estates = model.getEstates();
+       // dtoModel.messages = model.getMessages();
+        return dtoModel;
     }
 
     @Override
-    public User map(UserViewModel viewModel) {
+    public User map(UserDTO dtoModel) {
         User model = new User();
-        model.setEstates(viewModel.estates);
-        model.setRating(viewModel.rating);
-        model.setId(viewModel.userName);
-        model.setUserType(viewModel.userType);
+        model.setId(dtoModel.id);
+        model.setUserName(dtoModel.userName);
+        model.setRating(dtoModel.rating);
+        model.setUserType(dtoModel.userType);
+        //model.setEstates(dtoModel.estates);
+       // model.setMessages(dtoModel.messages);
         return model;
     }
 
     @Override
-    public List<UserViewModel> mapMany(List<User> models) {
+    public List<UserDTO> mapMany(List<User> models) {
         return models.stream()
             .map(this::map)
             .collect(Collectors.toList());
-    }
-
-    @Override
-    public UserDetailsViewModel mapDetails(User model) {
-        UserDetailsViewModel vm = new UserDetailsViewModel();
-        vm.estates = model.getEstates();
-        vm.rating = model.getRating();
-        vm.userName = model.getId();
-        vm.userType=model.getUserType();
-        return vm;
     }
 }
