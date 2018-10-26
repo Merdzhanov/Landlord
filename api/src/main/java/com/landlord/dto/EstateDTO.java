@@ -1,64 +1,38 @@
-package com.landlord.models;
+package com.landlord.dto;
 
+import com.landlord.dto.base.DTOModelBase;
+import com.landlord.models.ChatMessage;
+import com.landlord.models.User;
 import com.landlord.models.base.ModelBase;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-@Entity
-@EnableAutoConfiguration
-@Table(name = "Estates")
-public class Estate implements ModelBase {
-    @Id
-    @GeneratedValue
-    @Column(name = "EstateID")
-    private int id;
-
-    @Column(name = "imageUrl")
+public class EstateDTO extends DTOModelBase {
+    public int id;
     public String imageUrl;
+    public String name;
+    public String description;
+    public String address;
+    public BigDecimal owedAmount;
+    public Date dueDate;
+    public List<UserDTO> users;
+    public List<ChatMessageDTO> messageList;
 
-    @Column(name = "Name")
-    private String name;
-
-    @Column(name = "Description")
-    private String description;
-
-    @Column(name = "Address")
-    private String address;
-
-//    @ManyToOne
-//    @JoinColumn(name = "UserID")
-//    private List<User> user;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name="UsersEstates",
-            joinColumns = @JoinColumn(name="EstateID"),
-            inverseJoinColumns = @JoinColumn(name="UserID")
-    )
-    private List<User> users;
-
-    @Column(name = "OwedAmount")
-    private BigDecimal owedAmount;
-
-    @Column(name = "DueDate")
-    private Date dueDate;
-
-    @OneToMany(mappedBy = "estate")//,fetch = FetchType.EAGER)
-    private List<ChatMessage> messageList;
-
-    public Estate() {
+    public EstateDTO() {
     }
 
-    public Estate(String description, String address, List<User> users, BigDecimal owedAmount, Date dueDate, List<ChatMessage> messageList) {
+    public EstateDTO(String description, String address, BigDecimal owedAmount, Date dueDate) {
         this.description = description;
         this.address = address;
-        this.users = new LinkedList<User>();
         this.owedAmount = owedAmount;
         this.dueDate = dueDate;
-        this.messageList = new LinkedList<ChatMessage>();
+        this.users = new LinkedList<UserDTO>();
+        this.messageList = new LinkedList<ChatMessageDTO>();
     }
 
     public int getId() {
@@ -101,14 +75,6 @@ public class Estate implements ModelBase {
         this.name = name;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
     public BigDecimal getOwedAmount() {
         return owedAmount;
     }
@@ -125,12 +91,22 @@ public class Estate implements ModelBase {
         this.dueDate = dueDate;
     }
 
-    public List<ChatMessage> getMessageList() {
+    public List<UserDTO> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<UserDTO> users) {
+        this.users = users;
+    }
+
+    public List<ChatMessageDTO> getMessageList() {
         return messageList;
     }
 
-    public void setMessageList(List<ChatMessage> messageList) {
+    public void setMessageList(List<ChatMessageDTO> messageList) {
         this.messageList = messageList;
     }
+
+
 
 }

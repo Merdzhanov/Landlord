@@ -27,7 +27,7 @@ public class User implements ModelBase {
     private UserType userType;
 
     //@OneToMany(mappedBy = "user")
-    @ManyToMany
+    @ManyToMany//(fetch = FetchType.EAGER)
     @JoinTable(
             name="UsersEstates",
             joinColumns = @JoinColumn(name="UserID"),
@@ -35,7 +35,7 @@ public class User implements ModelBase {
     )
     private List<Estate> estates;
 
-    @OneToMany(mappedBy = "sender")
+    @OneToMany(mappedBy = "sender")//,fetch = FetchType.EAGER)
     private List<ChatMessage> messages;
 
     public User() {
@@ -83,21 +83,21 @@ public class User implements ModelBase {
         this.userType = userType;
     }
 
-//    public List<Estate> getEstates() {
-//        return estates;
-//    }
-//
-//    public void setEstates(List<Estate> estates) {
-//        this.estates = estates;
-//    }
+    public List<Estate> getEstates() {
+        return estates;
+    }
 
-//    public List<ChatMessage> getMessages() {
-//        return messages;
-//    }
-//
-//    public void setMessages(List<ChatMessage> messages) {
-//        this.messages = messages;
-//    }
+    public void setEstates(List<Estate> estates) {
+        this.estates = estates;
+    }
+
+    public List<ChatMessage> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<ChatMessage> messages) {
+        this.messages = messages;
+    }
 
 
 }

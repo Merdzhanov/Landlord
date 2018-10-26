@@ -10,4 +10,6 @@ public interface DTOMapper<T extends ModelBase, VT extends DTOModelBase> {
     T map(VT dtoModel);
 
     List<VT> mapMany(List<T> models);
+
+    public List<T> mapManyToModel(List<VT> dtoModels);
 }

@@ -1,16 +1,15 @@
 package com.landlord.api;
 
 
+import com.landlord.dto.EstateDTO;
 import com.landlord.dto.UserDTO;
 import com.landlord.models.Estate;
 import com.landlord.models.User;
-import com.landlord.models.base.ModelBase;
 import com.landlord.services.base.LandlordService;
+import com.landlord.utils.ChatMessageMapperImpl;
+import com.landlord.utils.EstateMapperImpl;
 import com.landlord.utils.UserMapperImpl;
-import com.landlord.utils.base.DTOMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,45 +19,57 @@ import java.util.List;
 public class LandlordApiController {
     private final LandlordService landlordService;
     private final UserMapperImpl userMapper;
+    private final EstateMapperImpl estateMapper;
+    private final ChatMessageMapperImpl chatMessageMapper;
+
 
     @Autowired
-    public LandlordApiController(LandlordService landlordService, UserMapperImpl userMapper) {
+    public LandlordApiController(
+            LandlordService landlordService,
+            UserMapperImpl userMapper,
+            EstateMapperImpl estateMapper,
+            ChatMessageMapperImpl chatMessageMapper
+    ) {
         this.landlordService = landlordService;
         this.userMapper = userMapper;
+        this.estateMapper = estateMapper;
+        this.chatMessageMapper = chatMessageMapper;
     }
 
     @RequestMapping(
-            path="Users",
-        method = RequestMethod.GET
+            path = "Users",
+            method = RequestMethod.GET
     )
     public List<UserDTO> getAllUsers() {
         List<User> models = this.landlordService.getAllUsers();
         return this.userMapper.mapMany(models);
     }
+
     @RequestMapping(
-            path="Estates",
+            path = "Estates",
             method = RequestMethod.GET
     )
-    public List<Estate> getAllEstates() {
+    public List<EstateDTO> getAllEstates() {
         List<Estate> models = this.landlordService.getAllEstates();
-        return models;//this.userMapper.mapMany(models);
+        return this.estateMapper.mapMany(models);
     }
 
     @RequestMapping(
-        value = "Estates/User/{userName}",
-        method = RequestMethod.GET
+            value = "Estates/User/{userName}",
+            method = RequestMethod.GET
     )
-    public List<Estate> getEstatesByUser(@PathVariable("userName") String userName) {
-        List<Estate> estates = this.landlordService.getEstatesByUser(userName);
-        return estates;//his.userMapper.map(model);
+    public List<EstateDTO> getEstatesByUser(@PathVariable("userName") String userName) {
+        List<Estate> models = this.landlordService.getEstatesByUser(userName);
+        return this.estateMapper.mapMany(models);
     }
+
     @RequestMapping(
             value = "Estates/ID/{id}",
             method = RequestMethod.GET
     )
-    public Estate getEstatesByID(@PathVariable("id") int id) {
+    public EstateDTO getEstatesByID(@PathVariable("id") int id) {
         Estate estate = this.landlordService.getEstateByID(id);
-        return estate;//his.userMapper.map(model);
+        return this.estateMapper.map(estate);
     }
 
 //    @RequestMapping(

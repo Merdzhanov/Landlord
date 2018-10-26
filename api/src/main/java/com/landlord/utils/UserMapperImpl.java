@@ -2,14 +2,26 @@ package com.landlord.utils;
 
 import com.landlord.dto.UserDTO;
 import com.landlord.models.User;
+import com.landlord.services.base.LandlordService;
 import com.landlord.utils.base.DTOMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
 public class UserMapperImpl  implements DTOMapper<User, UserDTO> {
-
+//    private final EstateMapperImpl estateMapper;
+//    private final ChatMessageMapperImpl chatMessageMapper;
+//
+//    @Autowired
+//    public UserMapperImpl(
+//            EstateMapperImpl estateMapper,
+//            ChatMessageMapperImpl chatMessageMapper
+//    ) {
+//        this.estateMapper = estateMapper;
+//        this.chatMessageMapper = chatMessageMapper;
+//    }
 
     @Override
     public UserDTO map(User model) {
@@ -18,8 +30,8 @@ public class UserMapperImpl  implements DTOMapper<User, UserDTO> {
         dtoModel.userName=model.getUserName();
         dtoModel.rating = model.getRating();
         dtoModel.userType = model.getUserType();
-       // dtoModel.estates = model.getEstates();
-       // dtoModel.messages = model.getMessages();
+        //dtoModel.estates = estateMapper.mapMany(model.getEstates());
+        //dtoModel.messages = chatMessageMapper.mapMany(model.getMessages());
         return dtoModel;
     }
 
@@ -30,8 +42,8 @@ public class UserMapperImpl  implements DTOMapper<User, UserDTO> {
         model.setUserName(dtoModel.userName);
         model.setRating(dtoModel.rating);
         model.setUserType(dtoModel.userType);
-        //model.setEstates(dtoModel.estates);
-       // model.setMessages(dtoModel.messages);
+        //model.setEstates(estateMapper.mapManyToModel(dtoModel.getEstates()));
+        //model.setMessages(chatMessageMapper.mapManyToModel(dtoModel.getMessages()));
         return model;
     }
 
@@ -40,5 +52,12 @@ public class UserMapperImpl  implements DTOMapper<User, UserDTO> {
         return models.stream()
             .map(this::map)
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<User> mapManyToModel(List<UserDTO> dtoModels) {
+        return dtoModels.stream()
+                .map(this::map)
+                .collect(Collectors.toList());
     }
 }

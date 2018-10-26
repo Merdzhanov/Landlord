@@ -14,8 +14,8 @@ public class UserDTO extends DTOModelBase {
     public String userName;
     public Double rating;
     public UserType userType;
-    public List<Estate> estates;
-    public List<ChatMessage> messages;
+    public List<EstateDTO> estates;
+    public List<ChatMessageDTO> messages;
 
     public UserDTO() {
 
@@ -26,8 +26,8 @@ public class UserDTO extends DTOModelBase {
         this.userName=userName;
         this.rating = rating;
         this.userType = userType;
-        this.estates = new ArrayList<Estate>();
-        this.messages = new LinkedList<ChatMessage>();
+        //this.estates = new ArrayList<EstateDTO>();
+        //this.messages = new LinkedList<ChatMessageDTO>();
     }
 
     public int getId() {
@@ -62,21 +62,21 @@ public class UserDTO extends DTOModelBase {
         this.userType = userType;
     }
 
-    public List<Estate> getEstates() {
-        return estates;
-    }
+//    public List<EstateDTO> getEstates() {
+//        return estates;
+//    }
+//
+//    public void setEstates(List<EstateDTO> estates) {
+//        this.estates = estates;
+//    }
 
-    public void setEstates(List<Estate> estates) {
-        this.estates = estates;
-    }
-
-    public List<ChatMessage> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(List<ChatMessage> messages) {
-        this.messages = messages;
-    }
+//    public List<ChatMessageDTO> getMessages() {
+//        return messages;
+//    }
+//
+//    public void setMessages(List<ChatMessageDTO> messages) {
+//        this.messages = messages;
+//    }
 
 
 }

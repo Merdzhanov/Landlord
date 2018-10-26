@@ -1,39 +1,25 @@
-package com.landlord.models;
+package com.landlord.dto;
 
+import com.landlord.dto.base.DTOModelBase;
+import com.landlord.models.Estate;
+import com.landlord.models.User;
 import com.landlord.models.base.ModelBase;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@EnableAutoConfiguration
-@Table(name = "ChatMessages")
-public class ChatMessage implements ModelBase {
-    @Id
-    @GeneratedValue
-    @Column(name = "MessageID", updatable = false, nullable = false, insertable=false)
+public class ChatMessageDTO extends DTOModelBase {
     public int id;
+    public String message;
+    public Date date;
+    public EstateDTO estate;
+    public UserDTO sender;
 
-    @Column(name="Message")
-    private String message;
-
-    @Column(name="Date")
-    private Date date;
-
-    @ManyToOne//(fetch = FetchType.EAGER)
-    @JoinColumn(name = "EstateID")
-    private Estate estate;
-
-    @ManyToOne//(fetch = FetchType.EAGER)
-    @JoinColumn(name = "UserID")
-    private User sender;
-
-
-    public ChatMessage() {
+    public ChatMessageDTO() {
     }
 
-    public ChatMessage(String message, Date date, Estate estate, User sender) {
+    public ChatMessageDTO(String message, Date date, EstateDTO estate, UserDTO sender) {
         this.message = message;
         this.date = date;
         this.estate = estate;
@@ -64,19 +50,19 @@ public class ChatMessage implements ModelBase {
         this.date = date;
     }
 
-    public Estate getEstate() {
+    public EstateDTO getEstate() {
         return estate;
     }
 
-    public void setEstate(Estate estate) {
+    public void setEstate(EstateDTO estate) {
         this.estate = estate;
     }
 
-    public User getSender() {
+    public UserDTO getSender() {
         return sender;
     }
 
-    public void setSender(User sender) {
+    public void setSender(UserDTO sender) {
         this.sender = sender;
     }
 }
