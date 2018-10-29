@@ -21,7 +21,7 @@ public class User implements ModelBase {
     public String userName;
 
     @Column(name="Rating")
-    private Double rating;
+    private float rating;
 
     @Column(name="UserType")
     private UserType userType;
@@ -38,11 +38,20 @@ public class User implements ModelBase {
     @OneToMany(mappedBy = "sender")//,fetch = FetchType.EAGER)
     private List<ChatMessage> messages;
 
+    @OneToMany(mappedBy = "voter")
+    //@JoinColumn(name = "UserID")//,fetch = FetchType.EAGER)
+    private List<RatingVote> votedFor;
+
+    @OneToMany(mappedBy = "votedForUser")//,fetch = FetchType.EAGER)
+    private List<RatingVote> ratingVotes;
+
+
+
     public User() {
 
     }
 
-    public User(int id, String userName, Double rating, UserType userType) {
+    public User(int id, String userName, float rating, UserType userType) {
         this.id = id;
         this.userName=userName;
         this.rating = rating;
@@ -67,11 +76,11 @@ public class User implements ModelBase {
         this.userName = userName;
     }
 
-    public Double getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(Double rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 

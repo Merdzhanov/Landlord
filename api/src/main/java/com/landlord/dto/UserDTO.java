@@ -12,7 +12,7 @@ import java.util.List;
 
 public class UserDTO extends DTOModelBase {
     public String userName;
-    public Double rating;
+    public float rating;
     public UserType userType;
     public List<EstateDTO> estates;
     public List<ChatMessageDTO> messages;
@@ -21,7 +21,7 @@ public class UserDTO extends DTOModelBase {
 
     }
 
-    public UserDTO(int id, String userName, Double rating, UserType userType) {
+    public UserDTO(int id, String userName, float rating, UserType userType) {
         this.id = id;
         this.userName=userName;
         this.rating = rating;
@@ -46,11 +46,11 @@ public class UserDTO extends DTOModelBase {
         this.userName = userName;
     }
 
-    public Double getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(Double rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 

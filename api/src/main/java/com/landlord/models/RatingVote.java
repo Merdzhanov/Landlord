@@ -1,0 +1,83 @@
+package com.landlord.models;
+
+import com.landlord.models.base.ModelBase;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
+import javax.persistence.*;
+import java.util.Date;
+
+@Entity
+@EnableAutoConfiguration
+@Table(name = "RatingVote")
+public class RatingVote implements ModelBase {
+
+    @Id
+    @GeneratedValue
+    @Column(name = "RatingVoteID")
+    public int id;
+
+    @Column(name="RatingVoted")
+    private float ratingVoted;
+
+    @ManyToOne//(fetch = FetchType.EAGER)
+    @JoinColumn(name = "UserID", insertable=false, updatable = false)
+    //@Column(name="Voter")
+    private User voter;
+
+    @ManyToOne//(fetch = FetchType.EAGER)
+    @JoinColumn(name = "UserID")
+    private User votedForUser;
+
+    @Column(name = "VotingDate")
+    private Date votingDate;
+
+    public RatingVote(float ratingVoted, User voter,User votedForUser, Date votingDate) {
+    //public RatingVote(float ratingVoted, User votedForUser, Date votingDate) {
+        this.ratingVoted = ratingVoted;
+        this.voter = voter;
+        this.votedForUser = votedForUser;
+        this.votingDate = votingDate;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public float getRatingVoted() {
+        return ratingVoted;
+    }
+
+    public void setRatingVoted(float ratingVoted) {
+        this.ratingVoted = ratingVoted;
+    }
+
+    public User getVoter() {
+        return voter;
+    }
+
+    public void setVoter(User voter) {
+        this.voter = voter;
+    }
+
+    public User getVotedForUser() {
+        return votedForUser;
+    }
+
+    public void setVotedForUser(User votedForUser) {
+        this.votedForUser = votedForUser;
+    }
+
+    public Date getVotingDate() {
+        return votingDate;
+    }
+
+    public void setVotingDate(Date votingDate) {
+        this.votingDate = votingDate;
+    }
+}

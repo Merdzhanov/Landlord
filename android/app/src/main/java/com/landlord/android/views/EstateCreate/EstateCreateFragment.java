@@ -59,11 +59,11 @@ public class EstateCreateFragment extends Fragment implements EstateCreateContra
 
     @OnClick(R.id.btn_save)
     public void onEstatesaveClicked() {
-        String name = mNameEditText.getText().toString();
-        String description = mDescription.getText().toString();
-        String imageUrl = mImageUrl.getText().toString();
-        Estate Estate = new Estate(name, description, imageUrl);
-        mPresenter.save(Estate);
+//        String name = mNameEditText.getText().toString();
+//        String description = mDescription.getText().toString();
+//        String imageUrl = mImageUrl.getText().toString();
+//        Estate Estate = new Estate(name, description, imageUrl);
+//        mPresenter.save(Estate);
     }
 
     @Override

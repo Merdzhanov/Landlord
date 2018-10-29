@@ -8,11 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.landlord.android.R;
 import com.landlord.android.models.Estate;
+import com.landlord.android.models.User;
+import com.landlord.android.models.base.UserType;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -33,6 +39,12 @@ public class EstateDetailsFragment
 
     @BindView(R.id.tv_description)
     TextView mDescriptionTextView;
+
+    @BindView(R.id.rating)
+    RatingBar mRatingBar;
+
+    @BindView(R.id.tv_landlord_name)
+    TextView mLandlordName;
 
     @Inject
     public EstateDetailsFragment() {
@@ -63,6 +75,13 @@ public class EstateDetailsFragment
         mDescriptionTextView.setText(Estate.getDescription());
         mDescriptionTextView.setMovementMethod(new ScrollingMovementMethod());
         Picasso.get().load(Estate.getImageUrl()).into(mImageView);
+        User landlord=Estate.getUsers().stream()
+                .filter(user -> user.getUserType().compareTo(UserType.LANDLORD)==0 )
+                .findFirst()
+                .get();
+        mLandlordName.setText(landlord.getUserName());
+        mRatingBar.setRating(landlord.getRating());
+       // mRatingBar.setOnRatingBarChangeListener();
     }
 
     @Override

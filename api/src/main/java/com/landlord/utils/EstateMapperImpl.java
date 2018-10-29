@@ -37,6 +37,7 @@ public class EstateMapperImpl implements DTOMapper<Estate, EstateDTO> {
         dtoModel.name=model.getName();
         dtoModel.description=model.getDescription();
         dtoModel.address=model.getAddress();
+        dtoModel.monthlyRent=model.getMonthlyRent();
         dtoModel.owedAmount=model.getOwedAmount();
         dtoModel.dueDate=model.getDueDate();
         dtoModel.users= userMapper.mapMany(model.getUsers());
@@ -52,6 +53,7 @@ public class EstateMapperImpl implements DTOMapper<Estate, EstateDTO> {
         model.setName(dtoModel.name);
         model.setDescription(dtoModel.description);
         model.setAddress(dtoModel.address);
+        model.setMonthlyRent(dtoModel.monthlyRent);
         model.setOwedAmount(dtoModel.owedAmount);
         model.setDueDate(dtoModel.dueDate);
         model.setUsers(userMapper.mapManyToModel(dtoModel.getUsers()));

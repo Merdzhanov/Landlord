@@ -18,6 +18,7 @@ public class EstateDTO extends DTOModelBase {
     public String name;
     public String description;
     public String address;
+    public BigDecimal monthlyRent;
     public BigDecimal owedAmount;
     public Date dueDate;
     public List<UserDTO> users;
@@ -26,9 +27,10 @@ public class EstateDTO extends DTOModelBase {
     public EstateDTO() {
     }
 
-    public EstateDTO(String description, String address, BigDecimal owedAmount, Date dueDate) {
+    public EstateDTO(String description, String address, BigDecimal monthlyRent, BigDecimal owedAmount, Date dueDate) {
         this.description = description;
         this.address = address;
+        this.monthlyRent = monthlyRent;
         this.owedAmount = owedAmount;
         this.dueDate = dueDate;
         this.users = new LinkedList<UserDTO>();
@@ -107,6 +109,11 @@ public class EstateDTO extends DTOModelBase {
         this.messageList = messageList;
     }
 
+    public BigDecimal getMonthlyRent() {
+        return monthlyRent;
+    }
 
-
+    public void setMonthlyRent(BigDecimal monthlyRent) {
+        this.monthlyRent = monthlyRent;
+    }
 }

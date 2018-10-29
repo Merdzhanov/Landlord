@@ -8,5 +8,7 @@ public class Constants {
 
     public static final String BASE_SERVER_URL
     //="http://10.178.211.134:8080/api";
-    ="http://192.168.0.102:8080/api";
+    //="http://10.178.211.134:8080/api";
+    //="http://192.168.1.80:8080/api";
+    ="http://192.168.0.101:8080/api";
 }

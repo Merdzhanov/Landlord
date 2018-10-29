@@ -40,6 +40,9 @@ public class Estate implements ModelBase {
     )
     private List<User> users;
 
+    @Column(name = "MonthlyRent")
+    private BigDecimal monthlyRent;
+
     @Column(name = "OwedAmount")
     private BigDecimal owedAmount;
 
@@ -52,12 +55,13 @@ public class Estate implements ModelBase {
     public Estate() {
     }
 
-    public Estate(String description, String address, List<User> users, BigDecimal owedAmount, Date dueDate, List<ChatMessage> messageList) {
+    public Estate(String description, String address, List<User> users, BigDecimal monthlyRent,BigDecimal owedAmount, Date dueDate, List<ChatMessage> messageList) {
         this.description = description;
         this.address = address;
-        this.users = new LinkedList<User>();
+        this.monthlyRent = monthlyRent;
         this.owedAmount = owedAmount;
         this.dueDate = dueDate;
+        this.users = new LinkedList<User>();
         this.messageList = new LinkedList<ChatMessage>();
     }
 
@@ -133,4 +137,11 @@ public class Estate implements ModelBase {
         this.messageList = messageList;
     }
 
+    public BigDecimal getMonthlyRent() {
+        return monthlyRent;
+    }
+
+    public void setMonthlyRent(BigDecimal monthlyRent) {
+        this.monthlyRent = monthlyRent;
+    }
 }
