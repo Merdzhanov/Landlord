@@ -15,7 +15,7 @@ public class ChatMessage implements ModelBase {
     @Column(name = "MessageID", updatable = false, nullable = false, insertable=false)
     public int id;
 
-    @Column(name="Message")
+    @Column(name="Text")
     private String message;
 
     @Column(name="Date")

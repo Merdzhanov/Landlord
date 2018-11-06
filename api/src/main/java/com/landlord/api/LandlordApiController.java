@@ -1,8 +1,10 @@
 package com.landlord.api;
 
 
+import com.landlord.dto.ChatMessageDTO;
 import com.landlord.dto.EstateDTO;
 import com.landlord.dto.UserDTO;
+import com.landlord.models.ChatMessage;
 import com.landlord.models.Estate;
 import com.landlord.models.User;
 import com.landlord.services.base.LandlordService;
@@ -83,4 +85,22 @@ public class LandlordApiController {
 //        return ResponseEntity.status(HttpStatus.CREATED)
 //            .body(vmToReturn);
 //    }
+
+    @RequestMapping(
+            path = "Messages",
+            method = RequestMethod.GET
+    )
+    public List<ChatMessageDTO> getAllMessages() {
+        List<ChatMessage> models = this.landlordService.getAllMessages();
+        return this.chatMessageMapper.mapMany(models);
+    }
+
+    @RequestMapping(
+            value = "Messages/Estate/{estateName}",
+            method = RequestMethod.GET
+    )
+    public List<ChatMessageDTO> getMessagesByEstate(@PathVariable("estateName") String estateName) {
+        List<ChatMessage> models = this.landlordService.getMessagesByEstate(estateName);
+        return this.chatMessageMapper.mapMany(models);
+    }
 }
