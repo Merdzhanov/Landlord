@@ -15,4 +15,6 @@ public interface Repository<T> {
     T add(T item) throws IOException;
 
     T getById(int id) throws IOException;
+
+    List<T> getMessagesByEstate(String estateName) throws IOException;;
 }

@@ -6,11 +6,15 @@ import android.os.Bundle;
 
 import com.landlord.android.Constants;
 import com.landlord.android.R;
+import com.landlord.android.models.ChatMessage;
 import com.landlord.android.models.Estate;
 import com.landlord.android.views.BaseDrawerActivity;
 import com.landlord.android.views.EstateDetails.EstateDetailsActivity;
 import com.landlord.android.views.EstateDetails.EstateDetailsFragment;
 import com.landlord.android.views.EstateDetails.EstateDetailsPresenter;
+import com.landlord.android.views.MessagesList.MessagesListActivity;
+import com.landlord.android.views.MessagesList.MessagesListFragment;
+import com.landlord.android.views.MessagesList.MessagesListPresenter;
 
 import javax.inject.Inject;
 
@@ -26,11 +30,17 @@ public class EstatesListActivity
     @Inject
     EstatesListContracts.Presenter mEstatesListPresenter;
 
-    @Inject
-    EstateDetailsFragment mEstateDetailsFragment;
+//    @Inject
+//    EstateDetailsFragment mEstateDetailsFragment;
 
     @Inject
-    EstateDetailsPresenter mEstateDetailsPresenter;
+    MessagesListFragment mEstateDetailsFragment;
+
+//    @Inject
+//    EstateDetailsPresenter mEstateDetailsPresenter;
+
+    @Inject
+    MessagesListPresenter mEstateDetailsPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,15 +82,16 @@ public class EstatesListActivity
         if (isPhone()) {
             Intent intent = new Intent(
                     this,
-                    EstateDetailsActivity.class
+//                    EstateDetailsActivity.class
+                    MessagesListActivity.class
             );
 
             intent.putExtra(Constants.EXTRA_KEY, Estate);
 
             startActivity(intent);
         } else {
-            mEstateDetailsPresenter.setEstateId(Estate.getId());
-            mEstateDetailsPresenter.loadEstate();
+            mEstateDetailsPresenter.setMessageId(ChatMessage.getId());   // TUK!!!
+            mEstateDetailsPresenter.loadMessages();                 // TUK!!!
         }
     }
 }

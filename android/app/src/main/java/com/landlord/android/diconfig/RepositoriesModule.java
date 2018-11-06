@@ -1,6 +1,7 @@
 package com.landlord.android.diconfig;
 
 import com.landlord.android.http.HttpRequester;
+import com.landlord.android.models.ChatMessage;
 import com.landlord.android.models.Estate;
 import com.landlord.android.parsers.base.JsonParser;
 import com.landlord.android.repositories.HttpRepository;
@@ -22,6 +23,17 @@ public class RepositoriesModule {
             JsonParser<Estate> jsonParser
     ) {
         String url = baseServerUrl;// + "/Estates";
+        return new HttpRepository<>(url,httpRequester,jsonParser);
+    }
+
+    @Provides
+    @Singleton
+    public Repository<ChatMessage> MessageRepository(
+            @Named("baseServerUrl") String baseServerUrl,
+            HttpRequester httpRequester,
+            JsonParser<ChatMessage> jsonParser
+    ) {
+        String url = baseServerUrl;// + "/Messages";
         return new HttpRepository<>(url,httpRequester,jsonParser);
     }
 }

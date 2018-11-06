@@ -1,6 +1,7 @@
 package com.landlord.android.services;
 
 
+import com.landlord.android.models.ChatMessage;
 import com.landlord.android.models.Estate;
 import com.landlord.android.repositories.base.Repository;
 import com.landlord.android.services.base.EstatesService;
@@ -44,4 +45,5 @@ public class HttpEstatesService implements EstatesService {
     public Estate createEstate(Estate Estate) throws IOException {
         return mEstatesRepository.add(Estate);
     }
+
 }

@@ -1,6 +1,7 @@
 package com.landlord.android.repositories;
 
 import com.landlord.android.http.HttpRequester;
+import com.landlord.android.models.ChatMessage;
 import com.landlord.android.models.Estate;
 import com.landlord.android.parsers.base.JsonParser;
 import com.landlord.android.repositories.base.Repository;
@@ -57,5 +58,12 @@ public class HttpRepository<T> implements Repository<T> {
         String url = mServerUrl + "/" + id;
         String json = mHttpRequester.get(url);
         return mJsonParser.fromJson(json);
+    }
+
+    @Override
+    public List<T> getMessagesByEstate(String estateName) throws IOException {
+        String url = mServerUrl + "/Messages/Estate/" + estateName;
+        String jsonArray = mHttpRequester.get(url);
+        return mJsonParser.fromJsonArray(jsonArray);
     }
 }
