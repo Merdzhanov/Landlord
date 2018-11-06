@@ -29,7 +29,7 @@ public class Estate implements ModelBase {
     @Column(name = "Address")
     private String address;
 
-//    @ManyToOne
+    //    @ManyToOne
 //    @JoinColumn(name = "UserID")
 //    private List<User> user;
     @ManyToMany(fetch = FetchType.EAGER)

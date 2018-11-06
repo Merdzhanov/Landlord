@@ -19,15 +19,12 @@ import java.util.stream.Collectors;
 //@Scope("prototype")
 public class ChatMessageMapperImpl implements DTOMapper<ChatMessage, ChatMessageDTO> {
     private final UserMapperImpl userMapper;
-    //private final EstateMapperImpl estateMapper;
 
     @Autowired()
     public ChatMessageMapperImpl(
-            UserMapperImpl userMapper//,
-    //        EstateMapperImpl estateMapper
+            UserMapperImpl userMapper
     ) {
         this.userMapper = userMapper;
-    //    this.estateMapper = estateMapper;
     }
 
     @Override
