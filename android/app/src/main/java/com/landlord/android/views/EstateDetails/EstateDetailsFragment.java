@@ -1,8 +1,9 @@
 package com.landlord.android.views.EstateDetails;
 
 
-import android.app.Fragment;
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,18 +17,15 @@ import com.landlord.android.models.Estate;
 import com.landlord.android.models.User;
 import com.landlord.android.models.base.UserType;
 import com.squareup.picasso.Picasso;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.inject.Inject;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class EstateDetailsFragment
         extends Fragment
         implements EstateDetailsContracts.View {
+
+   // public static final String ARG_OBJECT = "object";
 
     private EstateDetailsContracts.Presenter mPresenter;
 
@@ -54,12 +52,9 @@ public class EstateDetailsFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_estate_details, container, false);
-
-        ButterKnife.bind(this, view);
-
-        return view;
+        View rootView = inflater.inflate(R.layout.fragment_estate_details, container, false);
+        ButterKnife.bind(this, rootView);
+        return rootView;
     }
 
     @Override

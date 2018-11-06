@@ -44,16 +44,18 @@ public class EstatesListActivity
         mEstatesListFragment.setNavigator(this);
         mEstatesListFragment.setPresenter(mEstatesListPresenter);
 
-        FragmentTransaction transaction = getFragmentManager()
+        //FragmentTransaction transaction =
+                getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.content, mEstatesListFragment);
+                .replace(R.id.content, mEstatesListFragment)
+                        .commit();
 
-        if (!isPhone()) {
-            mEstateDetailsFragment.setPresenter(mEstateDetailsPresenter);
-            transaction.replace(R.id.content_details, mEstateDetailsFragment);
-        }
+//        if (!isPhone()) {
+//            mEstateDetailsFragment.setPresenter(mEstateDetailsPresenter);
+//            transaction.replace(R.id.content_details, mEstateDetailsFragment);
+//        }
 
-        transaction.commit();
+        //transaction.commit();
     }
 
     private boolean isPhone() {
