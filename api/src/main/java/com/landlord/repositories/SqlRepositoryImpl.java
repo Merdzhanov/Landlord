@@ -86,12 +86,12 @@ public class SqlRepositoryImpl implements GenericRepository {
     @Override
     public List<Estate> getEstatesByUser(String userName) {
         List<Estate> result = new ArrayList<>();
-        List<Estate> result2 = new ArrayList<>();
         try (
                 Session session = sessionFactory.openSession();
         ) {
             session.beginTransaction();
-            result = session.createQuery("select E from Estate as E, User as U where U.userName=:userName")
+
+            result = session.createQuery("select E from Estate as E ,User as U where U.userName=:userName and U in elements(E.users)")
                     .setParameter("userName", userName)
                     .list();
             session.getTransaction().commit();

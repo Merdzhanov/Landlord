@@ -2,6 +2,7 @@ package com.landlord;
 
 import com.landlord.models.ChatMessage;
 import com.landlord.models.Estate;
+import com.landlord.models.RatingVote;
 import com.landlord.models.User;
 import org.hibernate.SessionFactory;
 import org.springframework.boot.SpringApplication;
@@ -23,6 +24,7 @@ public class ApiApplication {
                 .addAnnotatedClass(User.class)
                 .addAnnotatedClass(ChatMessage.class)
                 .addAnnotatedClass(Estate.class)
+                .addAnnotatedClass(RatingVote.class)
                 .buildSessionFactory();
     }
 
