@@ -1,78 +1,86 @@
 package com.landlord.models;
 
-
-import com.landlord.Constants;
+import com.landlord.models.base.ModelBase;
 import com.landlord.models.base.UserType;
-import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
-@EnableAutoConfiguration
-@ComponentScan
 @Entity
-@Table(name = "users")
-public class User {
-
+@EnableAutoConfiguration
+@Table(name = "Users")
+public class User implements ModelBase {
     @Id
     @GeneratedValue
     @Column(name = "UserID")
-    private int userId;
+    public int id;
 
-    @NotNull
-    @UniqueElements
-    @Size(min = Constants.USERNAME_VALIDATION_MIN_VALUE, max = Constants.USERNAME_VALIDATION_MAX_VALUE)
     @Column(name = "UserName")
-    private String userName;
+    public String userName;
 
-    @NotNull
-    @Column(name = "UserType")
+    @Column(name="Rating")
+    private float rating;
+
+    @Column(name="UserType")
     private UserType userType;
 
-    @NotNull
-    @Column(name = "FirstName")
-    private String firstName;
+    //@OneToMany(mappedBy = "user")
+    @ManyToMany//(fetch = FetchType.EAGER)
+    @JoinTable(
+            name="UsersEstates",
+            joinColumns = @JoinColumn(name="UserID"),
+            inverseJoinColumns = @JoinColumn(name="EstateID")
+    )
+    private List<Estate> estates;
 
-    @NotNull
-    @Column(name = "LastName")
-    private String lastName;
+    @OneToMany(mappedBy = "sender")//,fetch = FetchType.EAGER)
+    private List<ChatMessage> messages;
 
-    @NotNull
-    @Column(name = "Rating")
-    private Double rating;
+    @OneToMany(mappedBy = "voter")
+    //@JoinColumn(name = "UserID")//,fetch = FetchType.EAGER)
+    private List<RatingVote> votedFor;
 
-    @NotNull
-    @Column(name = "Picture")
-    private byte[] userPicture;
+    @OneToMany(mappedBy = "votedForUser")//,fetch = FetchType.EAGER)
+    private List<RatingVote> ratingVotes;
 
-//
-//    @OneToMany(mappedBy="users")
-//    private Set<Estate> estates;
 
 
     public User() {
 
     }
 
-    public User(@NotNull @UniqueElements @Size(min = Constants.USERNAME_VALIDATION_MIN_VALUE, max = Constants.USERNAME_VALIDATION_MAX_VALUE) String userName, @NotNull UserType userType, @NotNull String firstName, @NotNull String lastName, @NotNull Double rating, @NotNull byte[] userPicture) {
-        this.userName = userName;
-        this.userType = userType;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(int id, String userName, float rating, UserType userType) {
+        this.id = id;
+        this.userName=userName;
         this.rating = rating;
-        this.userPicture = userPicture;
-//        this.estates = estates;
+        this.userType = userType;
+        this.estates = new ArrayList<Estate>();
+        this.messages = new LinkedList<ChatMessage>();
     }
 
+    public int getId() {
+        return id;
+    }
 
-    public Double getRating() {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(Double rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 
@@ -84,51 +92,21 @@ public class User {
         this.userType = userType;
     }
 
-//    public Set<Estate> getEstates() {
-//        return estates;
-//    }
-//
-//    public void setEstates(Set<Estate> estates) {
-//        this.estates = estates;
-//    }
-
-    public int getUserId() {
-        return userId;
+    public List<Estate> getEstates() {
+        return estates;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setEstates(List<Estate> estates) {
+        this.estates = estates;
     }
 
-    public String getUserName() {
-        return userName;
+    public List<ChatMessage> getMessages() {
+        return messages;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setMessages(List<ChatMessage> messages) {
+        this.messages = messages;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public byte[] getUserPicture() {
-        return userPicture;
-    }
-
-    public void setUserPicture(byte[] userPicture) {
-        this.userPicture = userPicture;
-    }
 }
