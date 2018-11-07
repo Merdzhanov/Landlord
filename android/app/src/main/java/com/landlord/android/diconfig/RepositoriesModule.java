@@ -33,7 +33,7 @@ public class RepositoriesModule {
             HttpRequester httpRequester,
             JsonParser<ChatMessage> jsonParser
     ) {
-        String url = baseServerUrl;// + "/Messages";
+        String url = baseServerUrl; // + "/Messages";
         return new HttpRepository<>(url,httpRequester,jsonParser);
     }
 }

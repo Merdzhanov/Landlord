@@ -9,6 +9,8 @@ import com.landlord.android.models.Estate;
 import com.landlord.android.views.BaseDrawerActivity;
 import com.landlord.android.views.EstatesList.EstatesListFragment;
 import com.landlord.android.views.EstatesList.EstatesListPresenter;
+import com.landlord.android.views.MessagesList.MessagesListFragment;
+import com.landlord.android.views.MessagesList.MessagesListPresenter;
 
 import javax.inject.Inject;
 
@@ -20,10 +22,10 @@ public class EstateDetailsActivity extends BaseDrawerActivity {
     EstateDetailsFragment mEstateDetailsFragment;
 
     @Inject
-    EstatesListFragment mEstatesListFragment;
+    MessagesListFragment mMessagesListFragment;
 
     @Inject
-    EstatesListPresenter mEstatesListPresenter;
+    MessagesListPresenter mMessagesListPresenter;
 
     @Inject
     EstateDetailsContracts.Presenter mEstateDetailsPresenter;
@@ -46,13 +48,13 @@ public class EstateDetailsActivity extends BaseDrawerActivity {
         mEstateDetailsPresenter.setEstateId(Estate.getId());
         mEstateDetailsFragment.setPresenter(mEstateDetailsPresenter);
         //mEstatesListFragment.setNavigator(this);
-        mEstatesListFragment.setPresenter(mEstatesListPresenter);
+        mMessagesListFragment.setPresenter(mMessagesListPresenter);
 
         mEstateDetailsFragmentPagerAdapter =
                 new EstateDetailsFragmentPagerAdapter(
                         getSupportFragmentManager());
         mEstateDetailsFragmentPagerAdapter.mEstateDetailsFragment=mEstateDetailsFragment;
-        mEstateDetailsFragmentPagerAdapter.mEstatesListFragment=mEstatesListFragment;
+        mEstateDetailsFragmentPagerAdapter.mMessagesListFragment=mMessagesListFragment;
 
         mViewPager = findViewById(R.id.pager);
         mViewPager.setAdapter(mEstateDetailsFragmentPagerAdapter);

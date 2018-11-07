@@ -36,22 +36,19 @@ public class MessagesListPresenter implements MessagesListContracts.Presenter
 
     @Override
     public void loadMessages() {
-        mView.showLoading();
         Disposable observable = Observable
                 .create((ObservableOnSubscribe<List<ChatMessage>>) emitter -> {
-                    List<ChatMessage> Messages = mMessagesService.getMessagesByEstate("ednostaen");
+                    List<ChatMessage> Messages = mMessagesService.getMessagesByEstate("Ednostaen");
                     emitter.onNext(Messages);
                     emitter.onComplete();
                 })
                 .subscribeOn(mSchedulerProvider.background())
                 .observeOn(mSchedulerProvider.ui())
-                .doFinally(mView::hideLoading)
                 .subscribe(
                         this::presentMessagesToView,
                         error -> mView.showError(error)
                 );
     }
-
 
     private void presentMessagesToView(List<ChatMessage> Messages) {
         if (Messages.isEmpty()) {

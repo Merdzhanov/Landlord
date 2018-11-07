@@ -5,11 +5,16 @@ import android.support.v4.app.Fragment ;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import com.landlord.android.views.EstatesList.EstatesListFragment;
+import com.landlord.android.views.MessagesList.MessagesListFragment;
+
 import javax.inject.Inject;
 
 public class EstateDetailsFragmentPagerAdapter extends FragmentPagerAdapter {
     @Inject
     EstateDetailsFragment mEstateDetailsFragment;
+
+    @Inject
+    MessagesListFragment mMessagesListFragment;
 
     @Inject
     EstatesListFragment mEstatesListFragment;
@@ -25,9 +30,9 @@ public class EstateDetailsFragmentPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return mEstateDetailsFragment;
             case 1:
+                return mMessagesListFragment;
+            case 2:
                 return mEstatesListFragment;
-//            case 2:
-//                return mEstateDetailsFragment;
             default:
                 return null;
         }

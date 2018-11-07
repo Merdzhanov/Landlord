@@ -26,7 +26,8 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 
 
-public class MessagesListActivity extends BaseDrawerActivity {
+public class MessagesListActivity
+        extends BaseDrawerActivity{
 
     @Inject
     MessagesListFragment mMessagesListFragment;
@@ -37,7 +38,7 @@ public class MessagesListActivity extends BaseDrawerActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_estate_details);
+        setContentView(R.layout.activity_estate_chat);
 
         ButterKnife.bind(this);
 
@@ -47,14 +48,19 @@ public class MessagesListActivity extends BaseDrawerActivity {
         mMessagesListPresenter.setMessageId(ChatMessage.getId());
         mMessagesListFragment.setPresenter(mMessagesListPresenter);
 
-        getFragmentManager()
+        getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content, mMessagesListFragment)
                 .commit();
+        mMessagesListPresenter.loadMessages();
     }
+
+//    mEstateDetailsPresenter.setEstateId(Estate.getId());
+//    mEstateDetailsPresenter.loadEstate();
 
     @Override
     protected long getIdentifier() {
         return 0;
     }
+
 }

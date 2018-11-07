@@ -15,10 +15,6 @@ public interface MessagesListContracts {
         void showEmptyMessagesList();
 
         void showError(Throwable e);
-
-        void showLoading();
-
-        void hideLoading();
     }
 
     interface Presenter {
@@ -28,10 +24,6 @@ public interface MessagesListContracts {
 
         void setMessageId(int id);
 
-    }
-
-    interface Navigator {
-        void navigateWith(ChatMessage Message);
     }
 }
 

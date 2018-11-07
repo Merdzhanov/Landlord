@@ -1,23 +1,27 @@
 package com.landlord.android.models;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ChatMessage {
-    public static int id;
+    public int id;
     private String messageText;
     private String messageUser;
-    private long messageTime;
+    private Date messageTime;
+    private List<Estate> estates;
 
     public ChatMessage(String massageText, String messageUser) {
         this.messageText = massageText;
         this.messageUser = messageUser;
-        messageTime = new Date().getTime();
+        messageTime = new Date();
+        this.estates = new ArrayList<Estate>();
     }
 
     public ChatMessage() {
     }
 
-    public static int getId() {
+    public int getId() {
         return id;
     }
 
@@ -41,11 +45,19 @@ public class ChatMessage {
         this.messageUser = messageUser;
     }
 
-    public long getMessageTime() {
+    public Date getMessageTime() {
         return messageTime;
     }
 
-    public void setMessageTime(long messageTime) {
+    public void setMessageTime(Date messageTime) {
         this.messageTime = messageTime;
+    }
+
+    public List<Estate> getEstates() {
+        return estates;
+    }
+
+    public void setEstates(List<Estate> estates) {
+        this.estates = estates;
     }
 }

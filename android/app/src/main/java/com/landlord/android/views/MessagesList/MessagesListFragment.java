@@ -1,40 +1,41 @@
 package com.landlord.android.views.MessagesList;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.landlord.android.R;
 import com.landlord.android.models.ChatMessage;
+import com.landlord.android.models.Estate;
+import com.landlord.android.models.User;
+import com.landlord.android.models.base.UserType;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnTextChanged;
+
+import static android.content.ContentValues.TAG;
+
 
 public class MessagesListFragment
         extends Fragment
-        implements MessagesListContracts.View, MessagesAdapter.OnMessageClickListener {
-
-    private MessagesListContracts.Presenter mPresenter;
-    private LinearLayoutManager mMessagesViewLayout;
-    private OnChatClickListener mOnClickListener;
+        implements MessagesListContracts.View {
 
     @BindView(R.id.rv_list_of_message)
     RecyclerView mMessagesView;
@@ -48,55 +49,53 @@ public class MessagesListFragment
     @Inject
     MessagesAdapter mMessagesAdapter;
 
+    private MessagesListContracts.Presenter mPresenter;
+    private  LinearLayoutManager mLayoutManager;
+
     @Inject
     public MessagesListFragment() {
         // Required empty public constructor
     }
 
 
-
-//    !!!! Start
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView( LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_estate_chat, container, false);
 
         // ButterKnife is applied
         ButterKnife.bind(this, view);
 
-        mMessagesAdapter.setOnMessageClickListener(this);
 
         mMessagesView.setAdapter(mMessagesAdapter);
-        mMessagesViewLayout = new LinearLayoutManager(getContext());
-        mMessagesView.setLayoutManager(mMessagesViewLayout);
+        mLayoutManager = new LinearLayoutManager(getContext());
+        mMessagesView.setLayoutManager(mLayoutManager);
 
-//
+        // !!! Start
+
+
+//        mMessagesAdapter.setOnClickListener(this);
+
+
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//
+
+//                .............
+        
+//                input.setText("");
 //            }
 //        });
 
-        displayChatMessage();
-
         return view;
     }
-
-
-    private void displayChatMessage() {
-        //   ??????
-
-    }
-
 
 //    !!!! End
 
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.subscribe((MessagesListContracts.View) this);
+        mPresenter.subscribe(this);
         mPresenter.loadMessages();
     }
 
@@ -105,37 +104,27 @@ public class MessagesListFragment
         mPresenter = presenter;
     }
 
-    @Override
-    public void onClick(ChatMessage Message) {
-        mOnClickListener.onClick(mMessagesView);
-    }
-
-    interface OnChatClickListener {
-        void onClick(RecyclerView ChatMessage);
-    }
 
     @Override
     public void showMessages(List<ChatMessage> Message) {
-
+        mMessagesAdapter.clear();
+        mMessagesAdapter.addAll(Message);
+        mMessagesAdapter.notifyDataSetChanged();
     }
+
 
     @Override
     public void showEmptyMessagesList() {
-
+        Toast.makeText(getContext(),
+                "No Messages",
+                Toast.LENGTH_LONG)
+                .show();
     }
 
     @Override
     public void showError(Throwable e) {
-
+        Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG)
+                .show();
     }
 
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
 }
