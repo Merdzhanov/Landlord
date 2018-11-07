@@ -21,7 +21,8 @@ import dagger.android.support.AndroidSupportInjectionModule;
         RepositoriesModule.class,
         ServicesModule.class,
         AsyncModule.class,
-        ViewsModule.class
+        ViewsModule.class,
+        MessagesListModule.class
 })
 public interface AppComponent extends AndroidInjector<LandlordApplication> {
     @Component.Builder

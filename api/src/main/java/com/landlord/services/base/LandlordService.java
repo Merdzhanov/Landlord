@@ -1,5 +1,6 @@
 package com.landlord.services.base;
 
+import com.landlord.models.ChatMessage;
 import com.landlord.models.Estate;
 import com.landlord.models.User;
 import com.landlord.models.base.ModelBase;
@@ -24,4 +25,8 @@ public interface LandlordService <T extends ModelBase> {
         void update(int id, T item);
 
         void delete(int id);
+
+        List<ChatMessage>  getAllMessages();
+
+        List<ChatMessage> getMessagesByEstate(String estateName);
 }

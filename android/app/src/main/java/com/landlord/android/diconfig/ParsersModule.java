@@ -1,5 +1,6 @@
 package com.landlord.android.diconfig;
 
+import com.landlord.android.models.ChatMessage;
 import com.landlord.android.models.Estate;
 import com.landlord.android.models.User;
 import com.landlord.android.parsers.GsonJsonParser;
@@ -17,5 +18,10 @@ public class ParsersModule {
     @Provides
     public JsonParser<User> UserJsonParser() {
         return new GsonJsonParser<>(User.class, User[].class);
+    }
+
+    @Provides
+    public JsonParser<ChatMessage> MessageJsonParser() {
+        return new GsonJsonParser<>(ChatMessage.class, ChatMessage[].class);
     }
 }

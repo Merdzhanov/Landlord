@@ -1,12 +1,15 @@
 package com.landlord.android.views;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 
 import com.landlord.android.Constants;
 import com.landlord.android.R;
 import com.landlord.android.views.EstateCreate.EstateCreateActivity;
 import com.landlord.android.views.EstatesList.EstatesListActivity;
+import com.landlord.android.views.Login.LoginActivity;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
@@ -36,13 +39,20 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
                 .withIcon(android.R.drawable.btn_plus)
                 .withName("Create Estate");
 
+        PrimaryDrawerItem logoutItem = new PrimaryDrawerItem()
+                .withIdentifier(Constants.LOGOUT_IDENTIFIER)
+                .withIcon(android.R.drawable.button_onoff_indicator_off)
+                .withName("Logout");
+
         Drawer drawer = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(mToolbar)
                 .addDrawerItems(
                         listEstatesItem,
                         new DividerDrawerItem(),
-                        createEstateItem
+                        createEstateItem ,
+                        new DividerDrawerItem(),
+                        logoutItem
                 )
                 .withOnDrawerItemClickListener((view, position, drawerItem) ->
                 {
@@ -70,6 +80,16 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
         else if (identifier == Constants.LIST_IDENTIFIER)
         {
             return new Intent(this, EstatesListActivity.class);
+        }
+        else if (identifier == Constants.LOGOUT_IDENTIFIER)
+        {
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.clear();
+            editor.putString("username", "");
+            editor.commit();
+            //return new Intent(this, EstatesListActivity.class);
+            return new Intent(this, LoginActivity.class);
         }
 
         return null;

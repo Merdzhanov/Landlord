@@ -1,5 +1,6 @@
 package com.landlord.services;
 
+import com.landlord.models.ChatMessage;
 import com.landlord.models.Estate;
 import com.landlord.models.User;
 import com.landlord.models.base.ModelBase;
@@ -64,4 +65,15 @@ public class LandlordServiceImpl implements LandlordService {
     public void delete(int id) {
         this.landlordRepository.delete(id);
     }
+
+    @Override
+    public List<ChatMessage>  getAllMessages() {
+        return this.landlordRepository.getAllMessages();
+    }
+
+    @Override
+    public List<ChatMessage> getMessagesByEstate(String estateName) {
+        return this.landlordRepository.getMessagesByEstate(estateName);
+    };
+
 }
