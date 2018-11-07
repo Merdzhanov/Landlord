@@ -1,5 +1,11 @@
 package com.landlord.android.views.EstatesList;
 
+import android.app.Activity;
+import android.app.Application;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import com.landlord.android.LandlordApplication;
 import com.landlord.android.async.base.SchedulerProvider;
 import com.landlord.android.models.Estate;
 import com.landlord.android.services.base.EstatesService;
@@ -35,10 +41,11 @@ public class EstatesListPresenter
     @Override
     public void loadEstates() {
         mView.showLoading();
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(EstatesListActivity.getAppContext());
+        String username = sharedPrefs.getString("username", "");
         Disposable observable = Observable
                 .create((ObservableOnSubscribe<List<Estate>>) emitter -> {
-                   // List<Estate> Estates = mEstatesService.getAllEstates();
-                    List<Estate> Estates = mEstatesService.getEstatesByUser("rumi");
+                    List<Estate> Estates = mEstatesService.getEstatesByUser(username);
                     emitter.onNext(Estates);
                     emitter.onComplete();
                 })
