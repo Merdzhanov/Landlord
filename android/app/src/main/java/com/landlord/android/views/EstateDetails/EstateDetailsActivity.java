@@ -45,10 +45,14 @@ public class EstateDetailsActivity extends BaseDrawerActivity {
 
         // ViewPager and its adapters use support library
         // fragments, so use getSupportFragmentManager.
-        mEstateDetailsPresenter.setEstateId(Estate.getId());
+        Integer estateId=Estate.getId();
+        String estateName=Estate.getName();
+        mEstateDetailsPresenter.setEstateId(estateId);
         mEstateDetailsFragment.setPresenter(mEstateDetailsPresenter);
         //mEstatesListFragment.setNavigator(this);
+        mMessagesListPresenter.setEstateId(estateId);
         mMessagesListFragment.setPresenter(mMessagesListPresenter);
+
 
         mEstateDetailsFragmentPagerAdapter =
                 new EstateDetailsFragmentPagerAdapter(
@@ -58,7 +62,6 @@ public class EstateDetailsActivity extends BaseDrawerActivity {
 
         mViewPager = findViewById(R.id.pager);
         mViewPager.setAdapter(mEstateDetailsFragmentPagerAdapter);
-
     }
 
     @Override

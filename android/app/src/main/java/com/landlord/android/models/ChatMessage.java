@@ -6,58 +6,90 @@ import java.util.List;
 
 public class ChatMessage {
     public int id;
-    private String messageText;
-    private String messageUser;
-    private Date messageTime;
-    private List<Estate> estates;
+    private String message;//messageText;
+    private User sender;//messageUser;
+    private Date date;//messageTime;
+   // private List<Estate> estates;
 
-    public ChatMessage(String massageText, String messageUser) {
-        this.messageText = massageText;
-        this.messageUser = messageUser;
-        messageTime = new Date();
-        this.estates = new ArrayList<Estate>();
-    }
 
-    public ChatMessage() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public ChatMessage(int id, String message, User sender, Date date) {
         this.id = id;
+        this.message = message;
+        this.sender = sender;
+        this.date = date;
     }
 
-    public String getMessageText() {
-        return messageText;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMessageText(String messageText) {
-        this.messageText = messageText;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public String getMessageUser() {
-        return messageUser;
+    public User getSender() {
+        return sender;
     }
 
-    public void setMessageUser(String messageUser) {
-        this.messageUser = messageUser;
+    public void setSender(User sender) {
+        this.sender = sender;
     }
 
-    public Date getMessageTime() {
-        return messageTime;
+    public Date getDate() {
+        return date;
     }
 
-    public void setMessageTime(Date messageTime) {
-        this.messageTime = messageTime;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public List<Estate> getEstates() {
-        return estates;
-    }
-
-    public void setEstates(List<Estate> estates) {
-        this.estates = estates;
-    }
+//    public ChatMessage(String massageText, String messageUser) {
+//        this.messageText = massageText;
+//        this.messageUser = messageUser;
+//        messageTime = new Date();
+////        this.estates = new ArrayList<Estate>();
+//    }
+//
+//    public ChatMessage() {
+//    }
+//
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
+//
+//    public String getMessageText() {
+//        return messageText;
+//    }
+//
+//    public void setMessageText(String messageText) {
+//        this.messageText = messageText;
+//    }
+//
+//    public String getMessageUser() {
+//        return messageUser;
+//    }
+//
+//    public void setMessageUser(String messageUser) {
+//        this.messageUser = messageUser;
+//    }
+//
+//    public Date getMessageTime() {
+//        return messageTime;
+//    }
+//
+//    public void setMessageTime(Date messageTime) {
+//        this.messageTime = messageTime;
+//    }
+//
+////    public List<Estate> getEstates() {
+////        return estates;
+////    }
+////
+////    public void setEstates(List<Estate> estates) {
+////        this.estates = estates;
+////    }
 }

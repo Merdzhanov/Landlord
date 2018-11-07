@@ -43,20 +43,17 @@ public class MessagesListActivity
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        ChatMessage ChatMessage = (ChatMessage) intent.getSerializableExtra(Constants.EXTRA_KEY);
+        //ChatMessage ChatMessage = (ChatMessage) intent.getSerializableExtra(Constants.EXTRA_KEY);
 
-        mMessagesListPresenter.setMessageId(ChatMessage.getId());
+//        mMessagesListPresenter.setMessageId(ChatMessage.getId());
         mMessagesListFragment.setPresenter(mMessagesListPresenter);
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.content, mMessagesListFragment)
-                .commit();
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.content, mMessagesListFragment)
+//                .commit();
         mMessagesListPresenter.loadMessages();
     }
-
-//    mEstateDetailsPresenter.setEstateId(Estate.getId());
-//    mEstateDetailsPresenter.loadEstate();
 
     @Override
     protected long getIdentifier() {

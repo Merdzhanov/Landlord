@@ -74,18 +74,18 @@ public class MessagesListFragment
         // !!! Start
 
 
-//        mMessagesAdapter.setOnClickListener(this);
+        //mMessagesAdapter.setOnClickListener(this);
 
 
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-//                .............
+                int i=5;
         
-//                input.setText("");
-//            }
-//        });
+                input.setText("");
+            }
+        });
 
         return view;
     }
@@ -125,6 +125,12 @@ public class MessagesListFragment
     public void showError(Throwable e) {
         Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG)
                 .show();
+    }
+
+    @Override
+    public void hideLoading() {
+        mMessagesView.setVisibility(View.VISIBLE);
+        mMessagesView.setVisibility(View.GONE);
     }
 
 }

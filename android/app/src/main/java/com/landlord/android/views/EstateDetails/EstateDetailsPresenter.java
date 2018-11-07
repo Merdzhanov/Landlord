@@ -16,7 +16,7 @@ public class EstateDetailsPresenter
     private final SchedulerProvider mSchedulerProvider;
 
     private EstateDetailsContracts.View mView;
-    private int mEstateId;
+    private Integer mEstateId;
 
     @Inject
     public EstateDetailsPresenter(
@@ -48,7 +48,7 @@ public class EstateDetailsPresenter
     }
 
     @Override
-    public void setEstateId(int EstateId) {
+    public void setEstateId(Integer EstateId) {
         mEstateId = EstateId;
     }
 }

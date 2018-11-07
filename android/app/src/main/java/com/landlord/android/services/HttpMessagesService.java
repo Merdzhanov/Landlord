@@ -31,4 +31,9 @@ public class HttpMessagesService implements MessagesService {
         return mChatMessagesRepository.add(Message);
     }
 
+    @Override
+    public List<ChatMessage> getMessagesByEstateID(Integer mEstateId) throws IOException {
+        return mChatMessagesRepository.getMessagesByEstateID(mEstateId);
+    }
+
 }

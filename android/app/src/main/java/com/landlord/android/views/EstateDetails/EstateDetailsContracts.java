@@ -21,6 +21,6 @@ public interface EstateDetailsContracts {
 
         void loadEstate();
 
-        void setEstateId(int id);
+        void setEstateId(Integer id);
     }
 }

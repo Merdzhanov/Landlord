@@ -66,4 +66,11 @@ public class HttpRepository<T> implements Repository<T> {
         String jsonArray = mHttpRequester.get(url);
         return mJsonParser.fromJsonArray(jsonArray);
     }
+
+    @Override
+    public List<T> getMessagesByEstateID(Integer mEstateId) throws IOException {
+        String url = mServerUrl + "/Messages/Estate/ID/" + mEstateId;
+        String jsonArray = mHttpRequester.get(url);
+        return mJsonParser.fromJsonArray(jsonArray);
+    }
 }

@@ -13,4 +13,5 @@ public interface MessagesService {
 
     ChatMessage createMessage(ChatMessage Message) throws IOException;
 
+    List<ChatMessage> getMessagesByEstateID(Integer mEstateId) throws IOException;
 }

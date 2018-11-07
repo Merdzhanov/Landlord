@@ -17,4 +17,6 @@ public interface Repository<T> {
     T getById(int id) throws IOException;
 
     List<T> getMessagesByEstate(String estateName) throws IOException;;
+
+    List<T> getMessagesByEstateID(Integer mEstateId) throws IOException;
 }

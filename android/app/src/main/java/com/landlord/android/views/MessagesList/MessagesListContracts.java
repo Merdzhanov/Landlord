@@ -15,6 +15,8 @@ public interface MessagesListContracts {
         void showEmptyMessagesList();
 
         void showError(Throwable e);
+
+        void hideLoading();
     }
 
     interface Presenter {
@@ -22,7 +24,7 @@ public interface MessagesListContracts {
 
         void loadMessages();
 
-        void setMessageId(int id);
+        void setMessageId(Integer id);
 
     }
 }

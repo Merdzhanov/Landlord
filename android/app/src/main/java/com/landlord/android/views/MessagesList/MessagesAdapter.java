@@ -76,9 +76,9 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         }
 
         void bind(ChatMessage Message) {
-            mUserTextView.setText(Message.getMessageUser());
-            mMessageTextView.setText(Message.getMessageText());
-            mTimeTextView.setText((CharSequence) Message.getMessageTime());
+            mUserTextView.setText(Message.getSender().getUserName());//.getMessageUser());
+            mMessageTextView.setText(Message.getMessage());//.getMessageText());
+            mTimeTextView.setText(Message.getDate().toString());//.getMessageTime());
             mMessage = Message;
         }
     }
