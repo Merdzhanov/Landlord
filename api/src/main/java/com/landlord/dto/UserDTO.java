@@ -15,7 +15,7 @@ public class UserDTO extends DTOModelBase {
     public float rating;
     public UserType userType;
     public List<EstateDTO> estates;
-    public List<ChatMessageDTO> messages;
+    //public List<ChatMessageDTO> messages;
 
     public UserDTO() {
 

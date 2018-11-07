@@ -103,4 +103,13 @@ public class LandlordApiController {
         List<ChatMessage> models = this.landlordService.getMessagesByEstate(estateName);
         return this.chatMessageMapper.mapMany(models);
     }
+
+    @RequestMapping(
+            value = "/Messages/Estate/ID/{estateID}",
+            method = RequestMethod.GET
+    )
+    public List<ChatMessageDTO> getMessagesByEstateID(@PathVariable("estateID") String estateID) {
+        List<ChatMessage> models = this.landlordService.getMessagesByEstateID(estateID);
+        return this.chatMessageMapper.mapMany(models);
+    }
 }

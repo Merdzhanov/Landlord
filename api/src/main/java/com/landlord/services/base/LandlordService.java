@@ -29,4 +29,6 @@ public interface LandlordService <T extends ModelBase> {
         List<ChatMessage>  getAllMessages();
 
         List<ChatMessage> getMessagesByEstate(String estateName);
+
+    List<ChatMessage> getMessagesByEstateID(String estateID);
 }

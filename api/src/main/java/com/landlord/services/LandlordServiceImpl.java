@@ -74,6 +74,10 @@ public class LandlordServiceImpl implements LandlordService {
     @Override
     public List<ChatMessage> getMessagesByEstate(String estateName) {
         return this.landlordRepository.getMessagesByEstate(estateName);
-    };
+    }
 
+    @Override
+    public List<ChatMessage> getMessagesByEstateID(String estateID) {
+        return this.landlordRepository.getMessagesByEstateID(estateID);
+    }
 }

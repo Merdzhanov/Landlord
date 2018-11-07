@@ -20,4 +20,6 @@ public interface GenericRepository<T extends ModelBase> {
     void delete(int id);
     List<ChatMessage> getAllMessages();
     List<ChatMessage> getMessagesByEstate(String estateName);
+
+    List<ChatMessage> getMessagesByEstateID(String estateID);
 }
