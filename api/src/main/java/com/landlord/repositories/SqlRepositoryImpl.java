@@ -161,11 +161,12 @@ public class SqlRepositoryImpl implements GenericRepository {
     @Override
     public List<ChatMessage> getMessagesByEstate(String name){
         List<ChatMessage> result = new ArrayList<>();
+        int id;
         try (
                 Session session = sessionFactory.openSession();
         ) {
             session.beginTransaction();
-            result = session.createQuery("select M from ChatMessage as M, Estate as E where E.name=:name and M.sender = E.id")
+            result = session.createQuery("select M from ChatMessage as M, Estate as E where E.name = :name and E = M.estate")
                     .setParameter("name", name)
                     .list();
             session.getTransaction().commit();
