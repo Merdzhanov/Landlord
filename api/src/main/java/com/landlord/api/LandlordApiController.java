@@ -48,6 +48,15 @@ public class LandlordApiController {
     }
 
     @RequestMapping(
+            path = "/Users/Username/{userName}",
+            method = RequestMethod.GET
+    )
+    public UserDTO getUserByUsername(@PathVariable("userName") String userName) {
+        User models = this.landlordService.getByUserName(userName);
+        return this.userMapper.map(models);
+    }
+
+    @RequestMapping(
             path = "Estates",
             method = RequestMethod.GET
     )

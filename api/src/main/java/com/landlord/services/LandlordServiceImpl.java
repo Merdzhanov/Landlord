@@ -80,4 +80,6 @@ public class LandlordServiceImpl implements LandlordService {
     public List<ChatMessage> getMessagesByEstateID(String estateID) {
         return this.landlordRepository.getMessagesByEstateID(estateID);
     }
+
+
 }
