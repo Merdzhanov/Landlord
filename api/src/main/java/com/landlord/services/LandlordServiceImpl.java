@@ -22,8 +22,9 @@ public class LandlordServiceImpl implements LandlordService {
     }
 
     @Override
-    public void create(ModelBase item) {
+    public ChatMessage create(ModelBase item) {
         this.landlordRepository.create(item);
+        return (ChatMessage) item;
     }
 
     @Override

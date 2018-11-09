@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import javax.persistence.*;
 import java.util.Date;
 
+
 public class ChatMessageDTO extends DTOModelBase {
     public int id;
     public String message;

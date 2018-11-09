@@ -4,6 +4,7 @@ import com.landlord.models.base.ModelBase;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -18,6 +19,7 @@ public class ChatMessage implements ModelBase {
     @Column(name="Text")
     private String message;
 
+    //@GeneratedValue
     @Column(name="Date")
     private Date date;
 
@@ -31,6 +33,13 @@ public class ChatMessage implements ModelBase {
 
 
     public ChatMessage() {
+    }
+
+    public ChatMessage(String message, Estate estate, User sender) {
+        this.message = message;
+        this.estate = estate;
+        this.sender = sender;
+        this.date= new Date();//LocalDateTime.now();
     }
 
     public ChatMessage(String message, Date date, Estate estate, User sender) {

@@ -8,7 +8,7 @@ import com.landlord.models.base.ModelBase;
 import java.util.List;
 
 public interface LandlordService <T extends ModelBase> {
-        void create(T item);
+        ChatMessage create(T item);
 
         List<User> getAllUsers();
 

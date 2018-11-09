@@ -2,18 +2,24 @@ package com.landlord.api;
 
 
 import com.landlord.dto.ChatMessageDTO;
+import com.landlord.dto.ChatMessageInputDTO;
 import com.landlord.dto.EstateDTO;
 import com.landlord.dto.UserDTO;
 import com.landlord.models.ChatMessage;
 import com.landlord.models.Estate;
 import com.landlord.models.User;
 import com.landlord.services.base.LandlordService;
+import com.landlord.utils.ChatMessageInputMapperImpl;
 import com.landlord.utils.ChatMessageMapperImpl;
 import com.landlord.utils.EstateMapperImpl;
 import com.landlord.utils.UserMapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -23,6 +29,7 @@ public class LandlordApiController {
     private final UserMapperImpl userMapper;
     private final EstateMapperImpl estateMapper;
     private final ChatMessageMapperImpl chatMessageMapper;
+    private ChatMessageInputMapperImpl chatMessageInputMapper;
 
 
     @Autowired
@@ -30,12 +37,14 @@ public class LandlordApiController {
             LandlordService landlordService,
             UserMapperImpl userMapper,
             EstateMapperImpl estateMapper,
-            ChatMessageMapperImpl chatMessageMapper
+            ChatMessageMapperImpl chatMessageMapper,
+            ChatMessageInputMapperImpl chatMessageInputMapper
     ) {
         this.landlordService = landlordService;
         this.userMapper = userMapper;
         this.estateMapper = estateMapper;
         this.chatMessageMapper = chatMessageMapper;
+        this.chatMessageInputMapper=chatMessageInputMapper;
     }
 
     @RequestMapping(
@@ -83,17 +92,19 @@ public class LandlordApiController {
         return this.estateMapper.map(estate);
     }
 
-//    @RequestMapping(
-//        method = RequestMethod.POST
-//    )
-//    public ResponseEntity<UserViewModel> createUser(@RequestBody UserViewModel userVm) {
-//        User model = this.mapper.map(userVm);
-//        User user = this.landlordService.create(model);
-//        UserViewModel vmToReturn = this.mapper.map(user);
-//
-//        return ResponseEntity.status(HttpStatus.CREATED)
-//            .body(vmToReturn);
-//    }
+    @RequestMapping(
+            value = "Messages/add",
+            method = RequestMethod.POST
+    )
+    public ResponseEntity<ChatMessageDTO> createChatMessage(@RequestBody ChatMessageInputDTO chatMessageInputDTO) {
+    //public void createChatMessageDTO(@RequestBody ChatMessageDTO chatMessageDTO) {
+        ChatMessage model = this.chatMessageInputMapper.map(chatMessageInputDTO);
+        ChatMessage chatMessage = this.landlordService.create(model);
+        ChatMessageDTO dtoToReturn = this.chatMessageMapper.map(chatMessage);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+            .body(dtoToReturn);
+    }
 
     @RequestMapping(
             path = "Messages",
