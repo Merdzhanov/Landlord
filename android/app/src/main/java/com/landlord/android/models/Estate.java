@@ -18,7 +18,7 @@ public class Estate implements Serializable {
     private List<User> users;
     //private List<ChatMessage> messageList;
 
-    public Estate() {
+    public Estate(String name, String description, String imageUrl) {
         // public constructor is needed for parsing from/to JSON to work
     }
 

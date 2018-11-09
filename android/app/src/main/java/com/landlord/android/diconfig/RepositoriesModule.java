@@ -2,7 +2,9 @@ package com.landlord.android.diconfig;
 
 import com.landlord.android.http.HttpRequester;
 import com.landlord.android.models.ChatMessage;
+import com.landlord.android.models.ChatMessageDTO;
 import com.landlord.android.models.Estate;
+import com.landlord.android.models.User;
 import com.landlord.android.parsers.base.JsonParser;
 import com.landlord.android.repositories.HttpRepository;
 import com.landlord.android.repositories.base.Repository;
@@ -34,6 +36,28 @@ public class RepositoriesModule {
             JsonParser<ChatMessage> jsonParser
     ) {
         String url = baseServerUrl; // + "/Messages";
+        return new HttpRepository<>(url,httpRequester,jsonParser);
+    }
+
+    @Provides
+    @Singleton
+    public Repository<ChatMessageDTO> DTOMessageRepository(
+            @Named("baseServerUrl") String baseServerUrl,
+            HttpRequester httpRequester,
+            JsonParser<ChatMessageDTO> jsonParser
+    ) {
+        String url = baseServerUrl; // + "/Messages";
+        return new HttpRepository<>(url,httpRequester,jsonParser);
+    }
+
+    @Provides
+    @Singleton
+    public Repository<User> UserRepository(
+            @Named("baseServerUrl") String baseServerUrl,
+            HttpRequester httpRequester,
+            JsonParser<User> jsonParser
+    ) {
+        String url = baseServerUrl; // + "/Users";
         return new HttpRepository<>(url,httpRequester,jsonParser);
     }
 }

@@ -45,6 +45,7 @@ public class EstateDetailsFragmentPagerAdapter extends FragmentStatePagerAdapter
         return 2;
     }
 
+
     @Override
     public CharSequence getPageTitle(int position) {
         if (position==1){
@@ -57,6 +58,12 @@ public class EstateDetailsFragmentPagerAdapter extends FragmentStatePagerAdapter
 //            return "Photo";
 //        }
         return ""+ position;
+    }
+
+    @Override
+    public int getItemPosition(Object object) {
+        // POSITION_NONE makes it possible to reload the PagerAdapter
+        return POSITION_NONE;
     }
 }
 

@@ -20,6 +20,7 @@ import com.landlord.android.Constants;
 import com.landlord.android.R;
 import com.landlord.android.models.ChatMessage;
 import com.landlord.android.views.BaseDrawerActivity;
+import com.landlord.android.views.EstatesList.EstatesListActivity;
 
 import javax.inject.Inject;
 
@@ -27,7 +28,7 @@ import butterknife.ButterKnife;
 
 
 public class MessagesListActivity
-        extends BaseDrawerActivity{
+        extends BaseDrawerActivity {//implements MessagesListContracts.Navigator{
 
     @Inject
     MessagesListFragment mMessagesListFragment;
@@ -60,4 +61,10 @@ public class MessagesListActivity
         return 0;
     }
 
+//    @Override
+//    public void navigateToHome() {
+//        Intent intent = new Intent(this, MessagesListActivity.class);
+//        startActivity(intent);
+//        finish();
+//    }
 }

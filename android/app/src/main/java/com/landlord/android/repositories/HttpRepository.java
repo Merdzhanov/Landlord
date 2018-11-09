@@ -3,6 +3,7 @@ package com.landlord.android.repositories;
 import com.landlord.android.http.HttpRequester;
 import com.landlord.android.models.ChatMessage;
 import com.landlord.android.models.Estate;
+import com.landlord.android.models.base.UserType;
 import com.landlord.android.parsers.base.JsonParser;
 import com.landlord.android.repositories.base.Repository;
 
@@ -49,8 +50,9 @@ public class HttpRepository<T> implements Repository<T> {
     @Override
     public T add(T item) throws IOException {
         String requestBody = mJsonParser.toJson(item);
-        String responseBody = mHttpRequester.post(mServerUrl, requestBody);
-        return mJsonParser.fromJson(responseBody);
+        //String responseBody =
+                mHttpRequester.post(mServerUrl + "/Messages/add", requestBody);
+        return null;//mJsonParser.fromJson(responseBody);
     }
 
     @Override
@@ -72,5 +74,22 @@ public class HttpRepository<T> implements Repository<T> {
         String url = mServerUrl + "/Messages/Estate/ID/" + mEstateId;
         String jsonArray = mHttpRequester.get(url);
         return mJsonParser.fromJsonArray(jsonArray);
+    }
+
+    @Override
+    public T getUserByUsername(String username) throws IOException {
+        String url = mServerUrl + "/Users/Username/" + username;
+        String json = mHttpRequester.get(url);
+        return mJsonParser.fromJson(json);
+    }
+
+    @Override
+    public List<T> getUsersByType(UserType userType) {
+        return null;
+    }
+
+    @Override
+    public List<T> getAllUsers() {
+        return null;
     }
 }

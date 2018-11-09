@@ -46,10 +46,13 @@
     <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/listRefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/fab">
     <android.support.v7.widget.RecyclerView
 
         android:id="@+id/rv_list_of_message"
+        android:scrollbars="vertical"
+        android:focusable="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/fab"

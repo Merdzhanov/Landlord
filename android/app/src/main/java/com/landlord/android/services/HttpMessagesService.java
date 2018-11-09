@@ -1,6 +1,7 @@
 package com.landlord.android.services;
 
 import com.landlord.android.models.ChatMessage;
+import com.landlord.android.models.ChatMessageDTO;
 import com.landlord.android.repositories.base.Repository;
 import com.landlord.android.services.base.MessagesService;
 
@@ -10,9 +11,16 @@ import java.util.List;
 public class HttpMessagesService implements MessagesService {
 
     private final Repository<ChatMessage> mChatMessagesRepository;
+   // private final Repository<ChatMessageDTO> mChatMessagesDTORepository;
 
-    public HttpMessagesService(Repository<ChatMessage> mChatMessagesRepository) {
+
+    public HttpMessagesService(
+            Repository<ChatMessage> mChatMessagesRepository//,
+//            Repository<ChatMessageDTO> mChatMessagesDTORepository
+)
+    {
         this.mChatMessagesRepository = mChatMessagesRepository;
+//        this.mChatMessagesDTORepository=mChatMessagesDTORepository;
     }
 
 
@@ -26,10 +34,10 @@ public class HttpMessagesService implements MessagesService {
         return mChatMessagesRepository.getMessagesByEstate(estateName);
     }
 
-    @Override
-    public ChatMessage createMessage(ChatMessage Message) throws IOException {
-        return mChatMessagesRepository.add(Message);
-    }
+//    @Override
+//    public ChatMessageDTO createMessage(ChatMessageDTO Message) throws IOException {
+//        return mChatMessagesDTORepository.add(Message);
+//    }
 
     @Override
     public List<ChatMessage> getMessagesByEstateID(Integer mEstateId) throws IOException {

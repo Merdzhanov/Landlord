@@ -2,6 +2,7 @@ package com.landlord.android.views.EstateDetails;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import com.landlord.android.Constants;
 import com.landlord.android.R;
@@ -9,6 +10,7 @@ import com.landlord.android.models.Estate;
 import com.landlord.android.views.BaseDrawerActivity;
 import com.landlord.android.views.EstatesList.EstatesListFragment;
 import com.landlord.android.views.EstatesList.EstatesListPresenter;
+import com.landlord.android.views.MessagesList.MessagesListContracts;
 import com.landlord.android.views.MessagesList.MessagesListFragment;
 import com.landlord.android.views.MessagesList.MessagesListPresenter;
 
@@ -16,7 +18,7 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
-public class EstateDetailsActivity extends BaseDrawerActivity {
+public class EstateDetailsActivity extends BaseDrawerActivity implements MessagesListContracts.Navigator {
 
     @Inject
     EstateDetailsFragment mEstateDetailsFragment;
@@ -62,10 +64,18 @@ public class EstateDetailsActivity extends BaseDrawerActivity {
 
         mViewPager = findViewById(R.id.pager);
         mViewPager.setAdapter(mEstateDetailsFragmentPagerAdapter);
+        //mMessagesListPresenter.handler
     }
 
     @Override
     protected long getIdentifier() {
         return Constants.CREATE_IDENTIFIER;
+    }
+
+    @Override
+    public void navigateToHome() {
+        Intent intent = new Intent(this, EstateDetailsActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

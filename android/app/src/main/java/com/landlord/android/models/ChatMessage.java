@@ -9,14 +9,22 @@ public class ChatMessage {
     private String message;//messageText;
     private User sender;//messageUser;
     private Date date;//messageTime;
+    private Estate estate;
    // private List<Estate> estates;
 
 
-    public ChatMessage(int id, String message, User sender, Date date) {
+    public ChatMessage(int id, String message, User sender, Date date,Estate estate) {
         this.id = id;
         this.message = message;
         this.sender = sender;
         this.date = date;
+        this.estate=estate;
+    }
+
+    public ChatMessage(String message, User sender, Estate estate) {
+        this.message = message;
+        this.sender = sender;
+        this.estate=estate;
     }
 
     public String getMessage() {
@@ -43,6 +51,13 @@ public class ChatMessage {
         this.date = date;
     }
 
+    public Estate getEstate() {
+        return estate;
+    }
+
+    public void setEstate(Estate estate) {
+        this.estate = estate;
+    }
 //    public ChatMessage(String massageText, String messageUser) {
 //        this.messageText = massageText;
 //        this.messageUser = messageUser;
