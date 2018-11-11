@@ -15,6 +15,10 @@ public class RatingVoteDTO extends DTOModelBase implements ModelBase {
     private String votedForUserUsername;
     private Date votingDate;
 
+    public RatingVoteDTO() {
+
+    }
+
     public RatingVoteDTO(Integer ratingVoted, String voter, String votedForUser) {
     //public RatingVote(float ratingVoted, User votedForUser, Date votingDate) {
         this.ratingVoted = ratingVoted;

@@ -8,6 +8,7 @@ import com.landlord.models.User;
 import com.landlord.models.base.ModelBase;
 import com.landlord.repositories.base.GenericRepository;
 import com.landlord.services.base.LandlordService;
+import com.landlord.utils.UserMapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +19,14 @@ import java.util.List;
 public class LandlordServiceImpl implements LandlordService {
 
     private final GenericRepository<ModelBase> landlordRepository;
+    private final UserMapperImpl userMapper;
 
     @Autowired
-    public LandlordServiceImpl(GenericRepository<ModelBase> landlordRepository) {
+    public LandlordServiceImpl(GenericRepository<ModelBase> landlordRepository,
+                               UserMapperImpl userMapper
+    ) {
         this.landlordRepository = landlordRepository;
+        this.userMapper = userMapper;
     }
 
     @Override
@@ -48,7 +53,7 @@ public class LandlordServiceImpl implements LandlordService {
         RatingVote ratingVoteToReturn=this.landlordRepository.getRatingVoteByUsersVoterAndVotedFor(voterUserName,votedForUsername);
         if(ratingVoteToReturn==null){
             ratingVoteToReturn=new RatingVote();
-            ratingVoteToReturn.setVoter(getByUserName(voterUserName));
+            ratingVoteToReturn.setVoter(voterUserName);
             ratingVoteToReturn.setVotedForUser(votedForUser);
         }
         ratingVoteToReturn.setRatingVoted(ratingVoteDTO.getRatingVoted());

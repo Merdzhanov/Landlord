@@ -184,7 +184,7 @@ public class SqlRepositoryImpl implements GenericRepository {
             session.beginTransaction();
             result = session.createQuery("select elements(E.messageList) from Estate as E where E.id=:estateID")// and M.sender = E.id")
                     .setParameter("estateID", Integer.parseInt(estateID))
-                    .setMaxResults(1)
+                    //.setMaxResults(300)
                     .list();
             session.getTransaction().commit();
         }
@@ -193,20 +193,24 @@ public class SqlRepositoryImpl implements GenericRepository {
 
     @Override
     public RatingVote getRatingVoteByUsersVoterAndVotedFor(String voterUserName, String votedForUsername) {
-        RatingVote ratingVote = null;
+        List<RatingVote> ratingVotels;
         try (
                 Session session = sessionFactory.openSession();
         ) {
             session.beginTransaction();
 
-            ratingVote = (RatingVote) session.createQuery("from RatingVote as RV where RV.voter.userName=:voterUserName and RV.votedForUser.userName=:votedForUsername")
+            ratingVotels = session.createQuery("from RatingVote as RV where RV.voter=:voterUserName and RV.votedForUser.userName=:votedForUsername")
                     .setParameter("voterUserName", voterUserName)
                     .setParameter("votedForUsername", votedForUsername)
-                    .getSingleResult();
+                    .list();
 
             session.getTransaction().commit();
         }
-        return null;
+        if (ratingVotels.isEmpty()){
+            return null;
+        }else {
+            return ratingVotels.get(0);
+        }
     }
 
     @Override

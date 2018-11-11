@@ -44,9 +44,9 @@ public class User implements ModelBase {
     @OneToMany(mappedBy = "sender")//,fetch = FetchType.EAGER)
     private List<ChatMessage> messages;
 
-    @OneToMany(mappedBy = "voter")
-    //@JoinColumn(name = "UserID")//,fetch = FetchType.EAGER)
-    private List<RatingVote> votedFor;
+   // @OneToMany(mappedBy = "voter")//,fetch = FetchType.EAGER)
+    //@JoinColumn(name = "UserID",fetch = FetchType.EAGER)
+   // private List<RatingVote> votedFor;
 
     @OneToMany(mappedBy = "votedForUser")//,fetch = FetchType.EAGER)
     private List<RatingVote> ratingVotes;
@@ -66,6 +66,8 @@ public class User implements ModelBase {
         this.userType = userType;
         this.estates = new ArrayList<Estate>();
         this.messages = new LinkedList<ChatMessage>();
+//        this.votedFor = new ArrayList<RatingVote>();
+        this.ratingVotes = new ArrayList<RatingVote>();
     }
 
     public String getFirstName() {
@@ -84,13 +86,13 @@ public class User implements ModelBase {
         this.lastName = lastName;
     }
 
-    public List<RatingVote> getVotedFor() {
-        return votedFor;
-    }
-
-    public void setVotedFor(List<RatingVote> votedFor) {
-        this.votedFor = votedFor;
-    }
+//    public List<RatingVote> getVotedFor() {
+//        return votedFor;
+//    }
+//
+//    public void setVotedFor(List<RatingVote> votedFor) {
+//        this.votedFor = votedFor;
+//    }
 
     public List<RatingVote> getRatingVotes() {
         return ratingVotes;
