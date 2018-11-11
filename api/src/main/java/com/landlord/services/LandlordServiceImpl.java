@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class LandlordServiceImpl implements LandlordService {
@@ -34,6 +35,15 @@ public class LandlordServiceImpl implements LandlordService {
 
     @Override
     public User getByUserName(String userName) {
+//
+//        User user = null;
+//        for (User u : getAllUsers()) {
+//            if (u.getUserName().equals(userName)) {
+//                user = u;
+//                return user;
+//            }
+//        }
+//        return null;
         return this.landlordRepository.getByUserName(userName);
     }
 
