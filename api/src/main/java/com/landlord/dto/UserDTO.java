@@ -5,6 +5,7 @@ import com.landlord.models.ChatMessage;
 import com.landlord.models.Estate;
 import com.landlord.models.base.UserType;
 
+import javax.persistence.Column;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,19 +16,39 @@ public class UserDTO extends DTOModelBase {
     public float rating;
     public UserType userType;
     public List<EstateDTO> estates;
+    public String firstName;
+    public String lastName;
     //public List<ChatMessageDTO> messages;
 
     public UserDTO() {
 
     }
 
-    public UserDTO(int id, String userName, float rating, UserType userType) {
+    public UserDTO(int id, String userName,String firstName,String lastName, float rating, UserType userType) {
         this.id = id;
         this.userName=userName;
         this.rating = rating;
         this.userType = userType;
+        this.firstName = firstName;
+        this.lastName = lastName;
         //this.estates = new ArrayList<EstateDTO>();
         //this.messages = new LinkedList<ChatMessageDTO>();
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public int getId() {

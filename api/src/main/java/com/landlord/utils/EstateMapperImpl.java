@@ -33,6 +33,7 @@ public class EstateMapperImpl implements DTOMapper<Estate, EstateDTO> {
     public EstateDTO map(Estate model) {
         EstateDTO dtoModel = new EstateDTO();
         dtoModel.id=model.getId();
+        dtoModel.image=model.getImage();
         dtoModel.imageUrl=model.getImageUrl();
         dtoModel.name=model.getName();
         dtoModel.description=model.getDescription();
@@ -49,6 +50,7 @@ public class EstateMapperImpl implements DTOMapper<Estate, EstateDTO> {
     public Estate map(EstateDTO dtoModel) {
         Estate model = new Estate();
         model.setId(dtoModel.id);
+        model.setImage(dtoModel.image);
         model.setImageUrl(dtoModel.imageUrl);
         model.setName(dtoModel.name);
         model.setDescription(dtoModel.description);

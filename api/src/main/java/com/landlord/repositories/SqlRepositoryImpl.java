@@ -2,6 +2,7 @@ package com.landlord.repositories;
 
 import com.landlord.models.ChatMessage;
 import com.landlord.models.Estate;
+import com.landlord.models.RatingVote;
 import com.landlord.models.User;
 import com.landlord.models.base.ModelBase;
 import com.landlord.repositories.base.GenericRepository;
@@ -166,7 +167,7 @@ public class SqlRepositoryImpl implements GenericRepository {
                 Session session = sessionFactory.openSession();
         ) {
             session.beginTransaction();
-            result = session.createQuery("select M from ChatMessage as M, Estate as E where E.name = :name and E = M.estate")
+            result = session.createQuery("select M from ChatMessage as M, Estate as E where E.name = :name and E = M.estate order by M.date ")
                     .setParameter("name", name)
                     .list();
             session.getTransaction().commit();
@@ -183,9 +184,46 @@ public class SqlRepositoryImpl implements GenericRepository {
             session.beginTransaction();
             result = session.createQuery("select elements(E.messageList) from Estate as E where E.id=:estateID")// and M.sender = E.id")
                     .setParameter("estateID", Integer.parseInt(estateID))
+                    .setMaxResults(1)
                     .list();
             session.getTransaction().commit();
         }
         return result;
+    }
+
+    @Override
+    public RatingVote getRatingVoteByUsersVoterAndVotedFor(String voterUserName, String votedForUsername) {
+        RatingVote ratingVote = null;
+        try (
+                Session session = sessionFactory.openSession();
+        ) {
+            session.beginTransaction();
+
+            ratingVote = (RatingVote) session.createQuery("from RatingVote as RV where RV.voter.userName=:voterUserName and RV.votedForUser.userName=:votedForUsername")
+                    .setParameter("voterUserName", voterUserName)
+                    .setParameter("votedForUsername", votedForUsername)
+                    .getSingleResult();
+
+            session.getTransaction().commit();
+        }
+        return null;
+    }
+
+    @Override
+    public float getAverageRatingForUserByUsername(String votedForUsername) {
+        float averageRating= 0;
+        try (
+                Session session = sessionFactory.openSession();
+        ) {
+            session.beginTransaction();
+
+            averageRating = session.createQuery("select AVG (RV.ratingVoted) from RatingVote as RV where RV.votedForUser.userName=:votedForUsername")
+                    .setParameter("votedForUsername", votedForUsername)
+                    .getFirstResult();
+
+            session.getTransaction().commit();
+        }
+
+        return averageRating;
     }
 }

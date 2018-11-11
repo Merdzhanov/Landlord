@@ -3,6 +3,7 @@ package com.landlord.repositories.base;
 
 import com.landlord.models.ChatMessage;
 import com.landlord.models.Estate;
+import com.landlord.models.RatingVote;
 import com.landlord.models.User;
 import com.landlord.models.base.ModelBase;
 
@@ -22,4 +23,8 @@ public interface GenericRepository<T extends ModelBase> {
     List<ChatMessage> getMessagesByEstate(String estateName);
 
     List<ChatMessage> getMessagesByEstateID(String estateID);
+
+    RatingVote getRatingVoteByUsersVoterAndVotedFor(String voterUserName, String votedForUsername);
+
+    float getAverageRatingForUserByUsername(String votedForUsername);
 }

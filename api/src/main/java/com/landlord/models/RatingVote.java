@@ -31,6 +31,9 @@ public class RatingVote implements ModelBase {
     @Column(name = "VotingDate")
     private Date votingDate;
 
+    public RatingVote() {
+    }
+
     public RatingVote(float ratingVoted, User voter,User votedForUser, Date votingDate) {
     //public RatingVote(float ratingVoted, User votedForUser, Date votingDate) {
         this.ratingVoted = ratingVoted;
