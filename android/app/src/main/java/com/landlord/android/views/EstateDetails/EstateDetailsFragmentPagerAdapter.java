@@ -5,21 +5,24 @@ import android.support.v4.app.Fragment ;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.widget.Toast;
 
 import com.landlord.android.views.EstatesList.EstatesListFragment;
 import com.landlord.android.views.MessagesList.MessagesListFragment;
+import com.landlord.android.views.camera.CameraMainFragment;
+import com.landlord.android.views.camera.CameraUtils;
 
 import javax.inject.Inject;
 
 public class EstateDetailsFragmentPagerAdapter extends FragmentStatePagerAdapter {
-    @Inject
+    //@Inject
     EstateDetailsFragment mEstateDetailsFragment;
 
-    @Inject
+    //@Inject
     MessagesListFragment mMessagesListFragment;
 
-    @Inject
-    EstatesListFragment mEstatesListFragment;
+    //@Inject
+    CameraMainFragment mCameraMainFragment;
 
 
     public EstateDetailsFragmentPagerAdapter(FragmentManager fm) {
@@ -33,8 +36,8 @@ public class EstateDetailsFragmentPagerAdapter extends FragmentStatePagerAdapter
                 return mMessagesListFragment;
             case 1:
                 return mEstateDetailsFragment;
-//            case 2:
-//                return mEstatesListFragment;
+            case 2:
+                return mCameraMainFragment;
             default:
                 return null;
         }
@@ -42,6 +45,9 @@ public class EstateDetailsFragmentPagerAdapter extends FragmentStatePagerAdapter
 
     @Override
     public int getCount() {
+        if(mCameraMainFragment!=null){
+           return 3;
+        }
         return 2;
     }
 
@@ -49,14 +55,14 @@ public class EstateDetailsFragmentPagerAdapter extends FragmentStatePagerAdapter
     @Override
     public CharSequence getPageTitle(int position) {
         if (position==1){
-            return "Estate Details";
-        }
-        if (position==2){
             return "Chat";
         }
-//        if (position==3){
-//            return "Photo";
-//        }
+        if (position==2){
+            return "Estate Details";
+        }
+        if (position==3){
+            return "Camera";
+        }
         return ""+ position;
     }
 
@@ -64,6 +70,7 @@ public class EstateDetailsFragmentPagerAdapter extends FragmentStatePagerAdapter
     public int getItemPosition(Object object) {
         // POSITION_NONE makes it possible to reload the PagerAdapter
         return POSITION_NONE;
+        //return 1;
     }
 }
 

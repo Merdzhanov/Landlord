@@ -2,6 +2,7 @@ package com.landlord.android.views.EstateDetails;
 
 
 import com.landlord.android.models.Estate;
+import com.landlord.android.models.User;
 
 public interface EstateDetailsContracts {
     interface View {
@@ -22,5 +23,7 @@ public interface EstateDetailsContracts {
         void loadEstate();
 
         void setEstateId(Integer id);
+
+        void setRating(User whoRates, User rated, int stars);
     }
 }

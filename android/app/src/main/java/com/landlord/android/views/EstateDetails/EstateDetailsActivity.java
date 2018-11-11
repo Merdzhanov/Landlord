@@ -13,6 +13,8 @@ import com.landlord.android.views.EstatesList.EstatesListPresenter;
 import com.landlord.android.views.MessagesList.MessagesListContracts;
 import com.landlord.android.views.MessagesList.MessagesListFragment;
 import com.landlord.android.views.MessagesList.MessagesListPresenter;
+import com.landlord.android.views.camera.CameraMainFragment;
+import com.landlord.android.views.camera.CameraUtils;
 
 import javax.inject.Inject;
 
@@ -28,6 +30,9 @@ public class EstateDetailsActivity extends BaseDrawerActivity implements Message
 
     @Inject
     MessagesListPresenter mMessagesListPresenter;
+
+    @Inject
+    CameraMainFragment mCameraMainFragment;
 
     @Inject
     EstateDetailsContracts.Presenter mEstateDetailsPresenter;
@@ -55,15 +60,27 @@ public class EstateDetailsActivity extends BaseDrawerActivity implements Message
         mMessagesListPresenter.setEstateId(estateId);
         mMessagesListFragment.setPresenter(mMessagesListPresenter);
 
+        mCameraMainFragment.setEstateId(estateId);
+
+
+
+
 
         mEstateDetailsFragmentPagerAdapter =
                 new EstateDetailsFragmentPagerAdapter(
                         getSupportFragmentManager());
         mEstateDetailsFragmentPagerAdapter.mEstateDetailsFragment=mEstateDetailsFragment;
         mEstateDetailsFragmentPagerAdapter.mMessagesListFragment=mMessagesListFragment;
+        if (!CameraUtils.isDeviceSupportCamera(getApplicationContext())) {
+            mEstateDetailsFragmentPagerAdapter.mCameraMainFragment=null;
+        }else {
+            mEstateDetailsFragmentPagerAdapter.mCameraMainFragment = mCameraMainFragment;
+        }
 
         mViewPager = findViewById(R.id.pager);
         mViewPager.setAdapter(mEstateDetailsFragmentPagerAdapter);
+
+        mViewPager.setCurrentItem(1);
         //mMessagesListPresenter.handler
     }
 

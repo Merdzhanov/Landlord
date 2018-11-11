@@ -9,6 +9,7 @@ import java.util.List;
 public class Estate implements Serializable {
     public int id;
     public String imageUrl;
+    public byte[] image;
     public String name;
     public String description;
     private String address;
@@ -18,21 +19,25 @@ public class Estate implements Serializable {
     private List<User> users;
     //private List<ChatMessage> messageList;
 
-    public Estate(String name, String description, String imageUrl) {
+    public Estate(int id, String name,  byte[] image, String description, String imageUrl) {
         // public constructor is needed for parsing from/to JSON to work
     }
 
     public Estate(
+            int id,
             String name,
             String description,
             String imageUrl,
+            byte[] image,
             String address,
             BigDecimal monthlyRent,
             BigDecimal owedAmount,
             Date dueDate
     )
     {
+        this.id=id;
         this.name = name;
+        this.image=image;
         this.description = description;
         this.imageUrl = imageUrl;
         this.address=address;
@@ -40,6 +45,14 @@ public class Estate implements Serializable {
         this.owedAmount=owedAmount;
         this.dueDate=dueDate;
         this.users=new ArrayList<User>();
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public String getName() {

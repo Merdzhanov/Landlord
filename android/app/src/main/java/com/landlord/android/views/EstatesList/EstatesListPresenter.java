@@ -61,9 +61,11 @@ public class EstatesListPresenter
     @Override
     public void filterEstates(String pattern) {
         mView.showLoading();
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(EstatesListActivity.getAppContext());
+        String username = sharedPrefs.getString("username", "");
         Disposable observable = Observable
                 .create((ObservableOnSubscribe<List<Estate>>) emitter -> {
-                    List<Estate> Estates = mEstatesService.getFilteredEstates(pattern);
+                    List<Estate> Estates = mEstatesService.getFilteredEstates(pattern, username);
                     emitter.onNext(Estates);
                     emitter.onComplete();
                 })

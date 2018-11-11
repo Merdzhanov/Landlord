@@ -3,6 +3,8 @@ package com.landlord.android.diconfig;
 import com.landlord.android.models.ChatMessage;
 import com.landlord.android.models.ChatMessageDTO;
 import com.landlord.android.models.Estate;
+import com.landlord.android.models.EstateDTO;
+import com.landlord.android.models.RatingVoteDTO;
 import com.landlord.android.models.User;
 import com.landlord.android.parsers.GsonJsonParser;
 import com.landlord.android.parsers.base.JsonParser;
@@ -17,6 +19,10 @@ public class ParsersModule {
         return new GsonJsonParser<>(Estate.class, Estate[].class);
     }
     @Provides
+    public JsonParser<EstateDTO> EstateDTOJsonParser() {
+        return new GsonJsonParser<>(EstateDTO.class, EstateDTO[].class);
+    }
+    @Provides
     public JsonParser<User> UserJsonParser() {
         return new GsonJsonParser<>(User.class, User[].class);
     }
@@ -24,6 +30,11 @@ public class ParsersModule {
     @Provides
     public JsonParser<ChatMessage> MessageJsonParser() {
         return new GsonJsonParser<>(ChatMessage.class, ChatMessage[].class);
+    }
+
+    @Provides
+    public JsonParser<RatingVoteDTO> RatingVoteDTOJsonParser() {
+        return new GsonJsonParser<>(RatingVoteDTO.class, RatingVoteDTO[].class);
     }
 
     @Provides
