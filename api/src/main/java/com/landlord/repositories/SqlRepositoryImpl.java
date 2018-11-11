@@ -54,15 +54,15 @@ public class SqlRepositoryImpl implements GenericRepository {
     @Override
     public User getByUserName(String userName) {
         User result = null;
-        try (
-                Session session = sessionFactory.openSession();
-        ) {
-            session.beginTransaction();
-            result = (User) session.createQuery("from User where userName  = :userName")
-                    .setParameter("userName", userName)
-                    .getSingleResult();
-            session.getTransaction().commit();
-        }
+//        try (
+//                Session session = sessionFactory.openSession();
+//        ) {
+//            session.beginTransaction();
+//            result = (User) session.createQuery("from User where userName  = :userName")
+//                    .setParameter("userName", userName)
+//                    .getSingleResult();
+//            session.getTransaction().commit();
+//        }
         return result;
 
     }
