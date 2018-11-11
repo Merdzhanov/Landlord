@@ -62,7 +62,7 @@ public class EstateCreateFragment extends Fragment implements EstateCreateContra
         String name = mNameEditText.getText().toString();
         String description = mDescription.getText().toString();
         String imageUrl = mImageUrl.getText().toString();
-        Estate Estate = new Estate(name, description, imageUrl);
+        Estate Estate = new Estate(-1, name,null, description, imageUrl);
         mPresenter.save(Estate);
     }
 

@@ -179,10 +179,10 @@ public class MessagesListFragment
 
     @Override
     public void showEmptyMessagesList() {
-        Toast.makeText(getContext(),
-                "No Messages",
-                Toast.LENGTH_LONG)
-                .show();
+//        Toast.makeText(getContext(),
+//                "No Messages",
+//                Toast.LENGTH_LONG)
+//                .show();
     }
 
     @Override

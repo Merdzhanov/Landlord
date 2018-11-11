@@ -1,12 +1,10 @@
 package com.landlord.api;
 
 
-import com.landlord.dto.ChatMessageDTO;
-import com.landlord.dto.ChatMessageInputDTO;
-import com.landlord.dto.EstateDTO;
-import com.landlord.dto.UserDTO;
+import com.landlord.dto.*;
 import com.landlord.models.ChatMessage;
 import com.landlord.models.Estate;
+import com.landlord.models.RatingVote;
 import com.landlord.models.User;
 import com.landlord.services.base.LandlordService;
 import com.landlord.utils.ChatMessageInputMapperImpl;
@@ -21,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/")
@@ -93,6 +92,17 @@ public class LandlordApiController {
     }
 
     @RequestMapping(
+            value = "Rating/add",
+            method = RequestMethod.POST
+    )
+    public ResponseEntity<RatingVote> createChatMessage(@RequestBody RatingVoteDTO ratingVoteDTO) {
+         RatingVote ratingVoteCreated = this.landlordService.CreateRatingVoteByUsersVoterAndVotedFor(ratingVoteDTO);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(ratingVoteCreated);
+    }
+
+    @RequestMapping(
             value = "Messages/add",
             method = RequestMethod.POST
     )
@@ -104,6 +114,19 @@ public class LandlordApiController {
 
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(dtoToReturn);
+    }
+
+    @RequestMapping(
+            value = "Estates/update",
+            method = RequestMethod.PUT
+    )
+    public ResponseEntity<Estate> updateEstate(@RequestBody Estate estateInput) {
+        int id=estateInput.getId();
+        Estate estate = this.landlordService.getEstateByID(id);
+        estate.setImage(estateInput.getImage());
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(estate);
     }
 
     @RequestMapping(

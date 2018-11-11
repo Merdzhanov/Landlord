@@ -56,6 +56,22 @@ public class HttpRepository<T> implements Repository<T> {
     }
 
     @Override
+    public T addRatingVote(T item) throws IOException {
+        String requestBody = mJsonParser.toJson(item);
+        //String responseBody =
+        mHttpRequester.post(mServerUrl + "/Rating/add", requestBody);
+        return null;//mJsonParser.fromJson(responseBody);
+    }
+
+    @Override
+    public T update(T item) throws IOException {
+        String requestBody = mJsonParser.toJson(item);
+
+        mHttpRequester.put(mServerUrl + "/Estates/update", requestBody);
+        return null;//mJsonParser.fromJson(responseBody);
+    }
+
+    @Override
     public T getById(int id) throws IOException {
         String url = mServerUrl + "/" + id;
         String json = mHttpRequester.get(url);

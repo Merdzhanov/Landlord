@@ -7,7 +7,14 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+<!--Camera-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera.front" android:required="false" />
+<!---->
     <application
         android:name=".LandlordApplication"
         android:allowBackup="true"
@@ -15,20 +22,34 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".views.EstatesList.EstatesListActivity">
+        android:theme="@style/AppTheme"
+        android:configChanges="orientation|screenSize|keyboardHidden">
+        <activity android:name=".views.EstatesList.EstatesListActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.EstateDetails.EstateDetailsActivity" />
-        <activity android:name=".views.EstateCreate.EstateCreateActivity" />
-        <activity android:name=".views.Login.LoginActivity"></activity>
-        <activity android:name=".views.EstateCreate.EstateCreateActivity"></activity>
-        <activity android:name=".views.MessagesList.MessagesListActivity"></activity>
+        <activity android:name=".views.EstateDetails.EstateDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".views.EstateCreate.EstateCreateActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".views.Login.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".views.MessagesList.MessagesListActivity"
+            android:screenOrientation="portrait"/>
 
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
     </application>
 

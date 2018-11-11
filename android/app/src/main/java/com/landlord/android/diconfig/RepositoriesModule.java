@@ -4,6 +4,8 @@ import com.landlord.android.http.HttpRequester;
 import com.landlord.android.models.ChatMessage;
 import com.landlord.android.models.ChatMessageDTO;
 import com.landlord.android.models.Estate;
+import com.landlord.android.models.EstateDTO;
+import com.landlord.android.models.RatingVoteDTO;
 import com.landlord.android.models.User;
 import com.landlord.android.parsers.base.JsonParser;
 import com.landlord.android.repositories.HttpRepository;
@@ -30,6 +32,17 @@ public class RepositoriesModule {
 
     @Provides
     @Singleton
+    public Repository<EstateDTO> EstateDTORepository(
+            @Named("baseServerUrl") String baseServerUrl,
+            HttpRequester httpRequester,
+            JsonParser<EstateDTO> jsonParser
+    ) {
+        String url = baseServerUrl;// + "/Estates";
+        return new HttpRepository<>(url,httpRequester,jsonParser);
+    }
+
+    @Provides
+    @Singleton
     public Repository<ChatMessage> MessageRepository(
             @Named("baseServerUrl") String baseServerUrl,
             HttpRequester httpRequester,
@@ -39,6 +52,16 @@ public class RepositoriesModule {
         return new HttpRepository<>(url,httpRequester,jsonParser);
     }
 
+    @Provides
+    @Singleton
+    public Repository<RatingVoteDTO> RatingVoteDTORepository(
+            @Named("baseServerUrl") String baseServerUrl,
+            HttpRequester httpRequester,
+            JsonParser<RatingVoteDTO> jsonParser
+    ) {
+        String url = baseServerUrl;
+        return new HttpRepository<>(url,httpRequester,jsonParser);
+    }
     @Provides
     @Singleton
     public Repository<ChatMessageDTO> DTOMessageRepository(

@@ -1,8 +1,8 @@
 package com.landlord.android.services;
 
 
-import com.landlord.android.models.ChatMessage;
 import com.landlord.android.models.Estate;
+import com.landlord.android.models.EstateDTO;
 import com.landlord.android.repositories.base.Repository;
 import com.landlord.android.services.base.EstatesService;
 
@@ -34,16 +34,30 @@ public class HttpEstatesService implements EstatesService {
 
     @Override
     public List<Estate> getFilteredEstates(String pattern) throws IOException {
+        return null;
+    }
+
+    @Override
+    public List<Estate> getFilteredEstates(String pattern,String userName) throws IOException {
         String patternToLower = pattern.toLowerCase();
 
-        return getAllEstates().stream()
+        return  getEstatesByUser(userName) .stream()
                 .filter(Estate -> Estate.getName().toLowerCase().contains(patternToLower))
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public Estate createEstate(Estate Estate) throws IOException {
-        return mEstatesRepository.add(Estate);
-    }
+//    @Override
+//    public Estate createEstate(Estate Estate) throws IOException {
+//        return mEstatesRepository.add(Estate);
+//    }
+//
+//    @Override
+//    public Estate updateEstate(Estate estate) throws IOException {
+//        EstateDTO estateDTO=new EstateDTO();
+//        estateDTO.setId(estate.getId());
+//        estateDTO.setImage(estate.getImage());
+//        estateDTO.setMonthlyRent(estate.getMonthlyRent());
+//        return mEstatesRepository.update(estateDTO);
+//    }
 
 }

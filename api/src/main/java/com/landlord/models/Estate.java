@@ -1,12 +1,18 @@
 package com.landlord.models;
 
 import com.landlord.models.base.ModelBase;
+
+import com.mysql.jdbc.Blob;
+import org.hibernate.type.descriptor.sql.LobTypeMappings;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import javax.persistence.*;
 import java.math.BigDecimal;
+
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+
+import static org.hibernate.type.StandardBasicTypes.BLOB;
 
 @Entity
 @EnableAutoConfiguration
@@ -19,6 +25,10 @@ public class Estate implements ModelBase {
 
     @Column(name = "imageUrl")
     public String imageUrl;
+
+    @Column(name = "image")
+    byte[] image;
+   // byte[] image;
 
     @Column(name = "Name")
     private String name;
@@ -55,14 +65,23 @@ public class Estate implements ModelBase {
     public Estate() {
     }
 
-    public Estate(String description, String address, List<User> users, BigDecimal monthlyRent,BigDecimal owedAmount, Date dueDate, List<ChatMessage> messageList) {
+    public Estate(String description, byte[] image, String address, List<User> users, BigDecimal monthlyRent,BigDecimal owedAmount, Date dueDate, List<ChatMessage> messageList) {
         this.description = description;
+        this.image=image;
         this.address = address;
         this.monthlyRent = monthlyRent;
         this.owedAmount = owedAmount;
         this.dueDate = dueDate;
         this.users = new LinkedList<User>();
         this.messageList = new LinkedList<ChatMessage>();
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public int getId() {

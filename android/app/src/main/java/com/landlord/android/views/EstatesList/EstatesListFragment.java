@@ -78,9 +78,13 @@ public class EstatesListFragment
 
     @Override
     public void showEstates(List<Estate> Estates) {
-        mEstatesAdapter.clear();
-        mEstatesAdapter.addAll(Estates);
-        mEstatesAdapter.notifyDataSetChanged();
+        if(Estates.size()==1){
+            onClick(Estates.get(0));
+        }else {
+            mEstatesAdapter.clear();
+            mEstatesAdapter.addAll(Estates);
+            mEstatesAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override

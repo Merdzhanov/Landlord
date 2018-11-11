@@ -28,6 +28,8 @@ public class UserMapperImpl  implements DTOMapper<User, UserDTO> {
         UserDTO dtoModel = new UserDTO();
         dtoModel.id = model.getId();
         dtoModel.userName=model.getUserName();
+        dtoModel.firstName=model.getFirstName();
+        dtoModel.lastName=model.getLastName();
         dtoModel.rating = model.getRating();
         dtoModel.userType = model.getUserType();
         //dtoModel.estates = estateMapper.mapMany(model.getEstates());
@@ -40,6 +42,8 @@ public class UserMapperImpl  implements DTOMapper<User, UserDTO> {
         User model = new User();
         model.setId(dtoModel.id);
         model.setUserName(dtoModel.userName);
+        model.setFirstName(dtoModel.firstName);
+        model.setLastName(dtoModel.lastName);
         model.setRating(dtoModel.rating);
         model.setUserType(dtoModel.userType);
         //model.setEstates(estateMapper.mapManyToModel(dtoModel.getEstates()));

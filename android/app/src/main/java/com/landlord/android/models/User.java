@@ -8,6 +8,8 @@ public class User implements Serializable {
     public String userName;
     public float rating;
     public UserType userType;
+    public String firstName;
+    public String lastName;
     //public List<Estate> estates;
     //private List<ChatMessage> messages;
 
@@ -15,13 +17,29 @@ public class User implements Serializable {
         // public constructor is needed for parsing from/to JSON to work
     }
 
-    public User(int id, String userName, float rating, UserType userType) {
+    public User(int id, String userName, String firstName, String lastName, float rating, UserType userType) {
         this.id = id;
         this.userName = userName;
         this.rating = rating;
         this.userType = userType;
-        //this.estates = new ArrayList<Estate>();
-        //this.messages = new LinkedList<ChatMessage>();
+        this.firstName=firstName;
+        this.lastName=lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public int getId() {

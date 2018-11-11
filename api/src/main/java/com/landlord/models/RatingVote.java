@@ -19,10 +19,10 @@ public class RatingVote implements ModelBase {
     @Column(name="RatingVoted")
     private float ratingVoted;
 
-    @ManyToOne//(fetch = FetchType.EAGER)
-    @JoinColumn(name = "UserID", insertable=false, updatable = false)
-    //@Column(name="Voter")
-    private User voter;
+//    @ManyToOne//(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "UserName")
+    @Column(name="Voter")
+    private String voter;
 
     @ManyToOne//(fetch = FetchType.EAGER)
     @JoinColumn(name = "UserID")
@@ -31,7 +31,10 @@ public class RatingVote implements ModelBase {
     @Column(name = "VotingDate")
     private Date votingDate;
 
-    public RatingVote(float ratingVoted, User voter,User votedForUser, Date votingDate) {
+    public RatingVote() {
+    }
+
+    public RatingVote(float ratingVoted, String voter,User votedForUser, Date votingDate) {
     //public RatingVote(float ratingVoted, User votedForUser, Date votingDate) {
         this.ratingVoted = ratingVoted;
         this.voter = voter;
@@ -57,11 +60,19 @@ public class RatingVote implements ModelBase {
         this.ratingVoted = ratingVoted;
     }
 
-    public User getVoter() {
+//    public User getVoter() {
+//        return voter;
+//    }
+//
+//    public void setVoter(User voter) {
+//        this.voter = voter;
+//    }
+
+    public String getVoter() {
         return voter;
     }
 
-    public void setVoter(User voter) {
+    public void setVoter(String voter) {
         this.voter = voter;
     }
 

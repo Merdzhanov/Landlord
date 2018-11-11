@@ -1,7 +1,6 @@
 package com.landlord.android.services.base;
 
 
-import com.landlord.android.models.ChatMessage;
 import com.landlord.android.models.Estate;
 
 import java.io.IOException;
@@ -16,6 +15,9 @@ public interface EstatesService {
 
     List<Estate> getFilteredEstates(String pattern) throws IOException;
 
-    Estate createEstate(Estate Estate) throws IOException;
+    List<Estate> getFilteredEstates(String pattern, String userName) throws IOException;
 
+//    Estate createEstate(Estate Estate) throws IOException;
+//
+//    Estate updateEstate(Estate mEstate) throws IOException;
 }

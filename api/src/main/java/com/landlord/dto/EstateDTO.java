@@ -4,6 +4,7 @@ import com.landlord.dto.base.DTOModelBase;
 import com.landlord.models.ChatMessage;
 import com.landlord.models.User;
 import com.landlord.models.base.ModelBase;
+import com.mysql.jdbc.Blob;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ import java.util.List;
 public class EstateDTO extends DTOModelBase {
     public int id;
     public String imageUrl;
+    public byte[] image;
     public String name;
     public String description;
     public String address;
@@ -27,14 +29,23 @@ public class EstateDTO extends DTOModelBase {
     public EstateDTO() {
     }
 
-    public EstateDTO(String description, String address, BigDecimal monthlyRent, BigDecimal owedAmount, Date dueDate) {
+    public EstateDTO(String description, byte[] image, String address, BigDecimal monthlyRent, BigDecimal owedAmount, Date dueDate) {
         this.description = description;
+        this.image=image;
         this.address = address;
         this.monthlyRent = monthlyRent;
         this.owedAmount = owedAmount;
         this.dueDate = dueDate;
         this.users = new LinkedList<UserDTO>();
         this.messageList = new LinkedList<ChatMessageDTO>();
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public int getId() {
