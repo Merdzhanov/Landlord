@@ -1,8 +1,12 @@
 package com.landlord.models;
 
+import com.landlord.Constants;
 import com.landlord.models.base.ModelBase;
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.LinkedList;
@@ -20,12 +24,17 @@ public class Estate implements ModelBase {
     @Column(name = "imageUrl")
     public String imageUrl;
 
+    @NotNull
     @Column(name = "image")
     private byte[] image;
 
+    @NotNull
+    @UniqueElements
+    @Size(min = Constants.ESTATE_VALIDATION_MIN_VALUE, max = Constants.ESTATE_VALIDATION_MAX_VALUE)
     @Column(name = "Name")
     private String name;
 
+    @NotNull
     @Column(name = "Description")
     private String description;
 
