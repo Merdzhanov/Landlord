@@ -25,6 +25,7 @@ public class SqlUsersRepositoryImpl implements UsersRepository {
                     .getSingleResult();
             session.getTransaction().commit();
         }
+        ///result..setRating(getAverageRatingForUserByUsername(votedForUsername));
         return result;
     }
 //    @Override

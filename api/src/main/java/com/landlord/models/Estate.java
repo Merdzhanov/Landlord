@@ -27,7 +27,7 @@ public class Estate implements ModelBase {
     public String imageUrl;
 
     @Column(name = "image")
-    byte[] image;
+    public byte[] image;
    // byte[] image;
 
     @Column(name = "Name")

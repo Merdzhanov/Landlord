@@ -14,10 +14,10 @@ public class RatingVote implements ModelBase {
     @Id
     @GeneratedValue
     @Column(name = "RatingVoteID")
-    public int id;
+    private int id;
 
     @Column(name="RatingVoted")
-    private float ratingVoted;
+    public float ratingVoted;
 
 //    @ManyToOne//(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "UserName")
@@ -26,10 +26,10 @@ public class RatingVote implements ModelBase {
 
     @ManyToOne//(fetch = FetchType.EAGER)
     @JoinColumn(name = "UserID")
-    private User votedForUser;
+    public User votedForUser;
 
     @Column(name = "VotingDate")
-    private Date votingDate;
+    public Date votingDate;
 
     public RatingVote() {
     }

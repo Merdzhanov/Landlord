@@ -8,5 +8,5 @@ public interface GenericRepository<T extends ModelBase> {
     void create(T item);
     //T getById(int id);
     void update(int id, T item);
-    void delete(int id);
+    void delete(T object);
 }

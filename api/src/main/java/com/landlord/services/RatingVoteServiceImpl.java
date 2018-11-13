@@ -49,24 +49,33 @@ public class RatingVoteServiceImpl implements RatingVoteService {
         String voterUserName=ratingVoteDTO.getVoterUsername();
         String votedForUsername=ratingVoteDTO.getVotedForUserUsername();
         User votedForUser=mUserService.getByUserName(votedForUsername);
-        RatingVote ratingVoteToReturn=getRatingVoteByUsersVoterAndVotedFor(voterUserName,votedForUsername);
-        String mode;
-        if(ratingVoteToReturn==null) {
-            ratingVoteToReturn = new RatingVote();
-            mode="create";
-        }else{
-            mode="update";
+        RatingVote foundRatingVote=getRatingVoteByUsersVoterAndVotedFor(voterUserName,votedForUsername);
+        if(foundRatingVote!=null){
+            mGenericService.delete(foundRatingVote);
         }
+        RatingVote  ratingVoteToReturn = new RatingVote();
+//        String mode;
+//        if(foundRatingVoteToReturn==null) {
+//            ratingVoteToReturn = new RatingVote();
+//            mode="create";
+//        }else{
+//            mode="update";
+//        }
         ratingVoteToReturn.setVoter(voterUserName);
         ratingVoteToReturn.setVotedForUser(votedForUser);
         ratingVoteToReturn.setRatingVoted(ratingVoteDTO.getRatingVoted());
         ratingVoteToReturn.setVotingDate(new Date());
+        mGenericService.create(ratingVoteToReturn);
+
         votedForUser.setRating(getAverageRatingForUserByUsername(votedForUsername));
-        if(mode.equals("create")){
-            mGenericService.create(ratingVoteToReturn);
-        }else{
-            mGenericService.update(ratingVoteToReturn.getId(),ratingVoteToReturn);
-        }
+        mGenericService.update(votedForUser.getId(),votedForUser);
+//        if(mode.equals("create")){
+//            mGenericService.create(ratingVoteToReturn);
+//        }else{
+//            mGenericService.create(ratingVoteToReturn);
+//            GenericService.delete();
+//            mGenericService.update(ratingVoteToReturn.getId(),ratingVoteToReturn);
+//        }
 //
 //
 //

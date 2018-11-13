@@ -32,7 +32,22 @@ public class GenericServiceImpl<T> implements GenericService {
     }
 
     @Override
-    public void delete(int id) {
-        mGenericRepository.delete(id);
+    public void delete(ModelBase item) {
+        mGenericRepository.delete(item);
     }
+
+//    @Override
+//    public void create(ModelBase item) {
+//
+//    }
+//
+//    @Override
+//    public void update(int id, ModelBase item) {
+//
+//    }
+//
+//    @Override
+//    public void delete(ModelBase item) {
+//
+//    }
 }
