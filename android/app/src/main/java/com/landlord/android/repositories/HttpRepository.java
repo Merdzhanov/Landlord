@@ -1,8 +1,6 @@
 package com.landlord.android.repositories;
 
 import com.landlord.android.http.HttpRequester;
-import com.landlord.android.models.ChatMessage;
-import com.landlord.android.models.Estate;
 import com.landlord.android.models.base.UserType;
 import com.landlord.android.parsers.base.JsonParser;
 import com.landlord.android.repositories.base.Repository;

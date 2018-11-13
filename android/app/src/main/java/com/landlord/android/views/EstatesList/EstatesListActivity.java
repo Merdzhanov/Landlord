@@ -64,12 +64,6 @@ public class EstatesListActivity
                 .replace(R.id.content, mEstatesListFragment)
                 .commit();
 
-//        if (!isPhone()) {
-//            mEstateDetailsFragment.setPresenter(mEstateDetailsPresenter);
-//            transaction.replace(R.id.content_details, mEstateDetailsFragment);
-//        }
-
-        //transaction.commit();
     }
 
     public static Context getAppContext() {

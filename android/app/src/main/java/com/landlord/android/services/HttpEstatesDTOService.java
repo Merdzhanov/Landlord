@@ -15,35 +15,6 @@ public class HttpEstatesDTOService implements EstatesDTOService {
         mEstatesRepository = EstateRepository;
     }
 
-//    @Override
-//    public List<Estate> getAllEstates() throws IOException {
-//        return mEstatesRepository.getAll();
-//    }
-//
-//    @Override
-//    public List<Estate> getEstatesByUser(String userName) throws IOException {
-//        return mEstatesRepository.getEstatesByUser(userName);
-//    }
-//
-//    @Override
-//    public Estate getDetailsById(int id) throws IOException {
-//        return mEstatesRepository.getEstateByID(id);
-//    }
-//
-//    @Override
-//    public List<Estate> getFilteredEstates(String pattern) throws IOException {
-//        return null;
-//    }
-//
-//    @Override
-//    public List<Estate> getFilteredEstates(String pattern,String userName) throws IOException {
-//        String patternToLower = pattern.toLowerCase();
-//
-//        return  getEstatesByUser(userName) .stream()
-//                .filter(Estate -> Estate.getName().toLowerCase().contains(patternToLower))
-//                .collect(Collectors.toList());
-//    }
-
     @Override
     public EstateDTO createEstate(Estate estate) throws IOException {
         EstateDTO estateDTO=new EstateDTO();

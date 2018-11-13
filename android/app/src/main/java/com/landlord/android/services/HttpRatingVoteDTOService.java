@@ -1,9 +1,7 @@
 package com.landlord.android.services;
 
-import com.landlord.android.models.ChatMessageDTO;
 import com.landlord.android.models.RatingVoteDTO;
 import com.landlord.android.repositories.base.Repository;
-import com.landlord.android.services.base.MessagesDTOService;
 import com.landlord.android.services.base.RatingVoteDTOService;
 
 import java.io.IOException;

@@ -1,9 +1,5 @@
 package com.landlord.android.models;
 
-import java.util.Date;
-
-import dagger.Provides;
-
 public class ChatMessageDTO {
     private String message;//messageText;
     private String messageSenderUsername;//messageUser;

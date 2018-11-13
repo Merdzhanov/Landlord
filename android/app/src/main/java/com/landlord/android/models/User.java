@@ -10,8 +10,6 @@ public class User implements Serializable {
     public UserType userType;
     public String firstName;
     public String lastName;
-    //public List<Estate> estates;
-    //private List<ChatMessage> messages;
 
     public User() {
         // public constructor is needed for parsing from/to JSON to work

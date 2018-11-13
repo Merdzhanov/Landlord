@@ -11,18 +11,13 @@ import java.util.List;
 public class HttpMessagesService implements MessagesService {
 
     private final Repository<ChatMessage> mChatMessagesRepository;
-   // private final Repository<ChatMessageDTO> mChatMessagesDTORepository;
-
 
     public HttpMessagesService(
-            Repository<ChatMessage> mChatMessagesRepository//,
-//            Repository<ChatMessageDTO> mChatMessagesDTORepository
+            Repository<ChatMessage> mChatMessagesRepository
 )
     {
         this.mChatMessagesRepository = mChatMessagesRepository;
-//        this.mChatMessagesDTORepository=mChatMessagesDTORepository;
     }
-
 
     @Override
     public List<ChatMessage> getAllMessages() throws IOException {
@@ -33,11 +28,6 @@ public class HttpMessagesService implements MessagesService {
     public List<ChatMessage> getMessagesByEstate(String estateName) throws IOException {
         return mChatMessagesRepository.getMessagesByEstate(estateName);
     }
-
-//    @Override
-//    public ChatMessageDTO createMessage(ChatMessageDTO Message) throws IOException {
-//        return mChatMessagesDTORepository.add(Message);
-//    }
 
     @Override
     public List<ChatMessage> getMessagesByEstateID(Integer mEstateId) throws IOException {

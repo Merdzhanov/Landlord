@@ -1,7 +1,5 @@
 package com.landlord.android.models;
 
-import java.util.Date;
-
 public class RatingVoteDTO {
     private Integer ratingVoted;
     private String voterUsername;

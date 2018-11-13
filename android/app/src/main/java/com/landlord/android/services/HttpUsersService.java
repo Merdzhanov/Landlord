@@ -1,6 +1,5 @@
 package com.landlord.android.services;
 
-import com.landlord.android.models.ChatMessage;
 import com.landlord.android.models.User;
 import com.landlord.android.models.base.UserType;
 import com.landlord.android.repositories.base.Repository;

@@ -57,12 +57,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.N
                 try {
                     SharedPreferences.Editor editor = sp.edit();
                     editor.clear();
-                    //mUser=mLoginPresenter.getUserByName(String.valueOf(mUsername.getText()));
-                    //if(mUser!=null) {
                         editor.putString("username", String.valueOf(mUsername.getText()));
-                    //}else{
-                    //    Toast.makeText(mActivity, "No such username in the database!", Toast.LENGTH_LONG).show();
-                   // }
                     editor.commit();
                     startActivity(new Intent(getApplicationContext(), EstatesListActivity.class));
                 } catch (Exception e) {

@@ -36,17 +36,5 @@ public class EstateCreatePresenter implements EstateCreateContracts.Presenter {
 
     @Override
     public void save(Estate Estate) {
-//        mView.showLoading();
-//        Disposable disposable = Observable
-//                .create((ObservableOnSubscribe<Estate>) emitter -> {
-//                    Estate createdEstate = mEstatesService.createEstate(Estate);
-//                    emitter.onNext(createdEstate);
-//                    emitter.onComplete();
-//                })
-//                .subscribeOn(mSchedulerProvider.background())
-//                .observeOn(mSchedulerProvider.ui())
-//                .doOnEach(x -> mView.hideLoading())
-//                .doOnError(mView::showError)
-//                .subscribe(s -> mView.navigateToHome());
     }
 }

@@ -1,6 +1,5 @@
 package com.landlord.android.repositories.base;
 
-import com.landlord.android.models.Estate;
 import com.landlord.android.models.base.UserType;
 
 import java.io.IOException;

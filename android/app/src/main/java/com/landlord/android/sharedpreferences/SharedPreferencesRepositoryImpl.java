@@ -14,15 +14,8 @@ public class SharedPreferencesRepositoryImpl  implements SharedPreferencesReposi
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-//    @Override
-//    public boolean isLoggedIn() {
-//
-//        return prefs.getBoolean(Constants.IS_LOGGED_IN, false);
-//    }
     @Override
     public String whoIsLoggedIn() {
-//        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-//        String username= prefs.getString("username", "");
         return prefs.getString("username", "");
     }
 }
