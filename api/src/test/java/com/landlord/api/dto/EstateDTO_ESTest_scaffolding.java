@@ -13,6 +13,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.mockito.Mock;
 
 import static org.mockito.Mockito.mock;
 
@@ -40,7 +41,7 @@ public class EstateDTO_ESTest_scaffolding {
     setSystemProperties();
     initializeClasses();
     org.evosuite.runtime.Runtime.getInstance().resetRuntime(); 
-    try { initMocksToAvoidTimeoutsInTheTests(); } catch(ClassNotFoundException e) {} 
+//    try { initMocksToAvoidTimeoutsInTheTests(); } catch(ClassNotFoundException e) {}
   } 
 
   @AfterClass 
@@ -94,9 +95,9 @@ public class EstateDTO_ESTest_scaffolding {
       "com.landlord.dto.EstateDTO"
     );
   } 
-  private static void initMocksToAvoidTimeoutsInTheTests() throws ClassNotFoundException { 
-    mock(Class.forName("java.util.Date", false, EstateDTO_ESTest_scaffolding.class.getClassLoader()));
-  }
+//  private static void initMocksToAvoidTimeoutsInTheTests() throws ClassNotFoundException {
+//    mock(Class.forName("java.util.Date",false, EstateDTO_ESTest_scaffolding.class.getClassLoader()));
+//  }
 
   private static void resetClasses() {
     org.evosuite.runtime.classhandling.ClassResetter.getInstance().setClassLoader(EstateDTO_ESTest_scaffolding.class.getClassLoader()); 

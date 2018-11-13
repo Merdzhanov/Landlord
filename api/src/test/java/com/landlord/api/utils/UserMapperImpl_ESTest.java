@@ -38,7 +38,7 @@ public class UserMapperImpl_ESTest extends UserMapperImpl_ESTest_scaffolding {
       UserDTO userDTO0 = userMapperImpl0.map(user0);
       User user1 = userMapperImpl0.map(userDTO0);
       assertEquals(920.6761F, user1.getRating(), 0.01F);
-      assertEquals(0, user1.id);
+      assertEquals(0, user1.getId());
   }
 
   @Test(timeout = 4000)
@@ -55,7 +55,7 @@ public class UserMapperImpl_ESTest extends UserMapperImpl_ESTest_scaffolding {
       UserDTO userDTO0 = userMapperImpl0.map(user0);
       User user1 = userMapperImpl0.map(userDTO0);
       assertEquals(0.0F, user1.getRating(), 0.01F);
-      assertEquals(1, user1.id);
+      assertEquals(1, user1.getId());
   }
 
   @Test(timeout = 4000)
@@ -72,7 +72,7 @@ public class UserMapperImpl_ESTest extends UserMapperImpl_ESTest_scaffolding {
       UserDTO userDTO0 = userMapperImpl0.map(user0);
       User user1 = userMapperImpl0.map(userDTO0);
       assertEquals((-272.0F), user1.getRating(), 0.01F);
-      assertEquals((-272), user1.id);
+      assertEquals((-272), user1.getId());
   }
 
   @Test(timeout = 4000)

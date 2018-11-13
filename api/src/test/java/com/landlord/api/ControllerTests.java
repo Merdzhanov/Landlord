@@ -2,11 +2,8 @@ package com.landlord.api;
 
 import com.landlord.dto.ChatMessageInputDTO;
 import com.landlord.dto.EstateDTO;
-import com.landlord.dto.RatingVoteDTO;
-import com.landlord.dto.UserDTO;
 import com.landlord.models.Estate;
 import com.landlord.models.User;
-
 import com.landlord.services.base.*;
 import com.landlord.utils.ChatMessageInputMapperImpl;
 import com.landlord.utils.EstateMapperImpl;
