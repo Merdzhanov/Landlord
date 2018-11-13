@@ -7,7 +7,6 @@ public class FieldCopyUtil {
         Field[] fields = from.getClass().getDeclaredFields();
         for (Field field : fields) {
             try {
-//                Field fieldFrom = from.getClass().getDeclaredField(field.getName());
                 Field fieldFrom = from.getClass().getField(field.getName());
                 Object value = fieldFrom.get(from);
                 to.getClass().getDeclaredField(field.getName()).set(to, value);
@@ -15,7 +14,6 @@ public class FieldCopyUtil {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (NoSuchFieldException e) {
-              //  e.printStackTrace();
             }
         }
     }

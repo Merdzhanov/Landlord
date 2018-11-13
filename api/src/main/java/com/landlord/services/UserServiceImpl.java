@@ -31,9 +31,4 @@ public class UserServiceImpl implements UserService {
     public UserDTO getDTOByUserName(String userName) {
         return mUserMappper.map(mUsersRepository.getByUserName(userName));
     }
-    //    @Override
-//    public List<User> getAllUsers() {
-//        return this.landlordRepository.getAllUsers();
-//    }
-
 }

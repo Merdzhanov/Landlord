@@ -5,7 +5,6 @@ import com.landlord.models.Estate;
 import com.landlord.utils.base.DTOMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,7 +35,6 @@ public class EstateMapperImpl implements DTOMapper<Estate, EstateDTO> {
         dtoModel.owedAmount=model.getOwedAmount();
         dtoModel.dueDate=model.getDueDate();
         dtoModel.users= userMapper.mapMany(model.getUsers());
-       // dtoModel.messageList=chatMessageMapper.mapMany(model.getMessageList());
         return dtoModel;
     }
 
@@ -53,7 +51,6 @@ public class EstateMapperImpl implements DTOMapper<Estate, EstateDTO> {
         model.setOwedAmount(dtoModel.owedAmount);
         model.setDueDate(dtoModel.dueDate);
         model.setUsers(userMapper.mapManyToModel(dtoModel.getUsers()));
-        //model.setMessageList(chatMessageMapper.mapManyToModel(dtoModel.getMessageList()));
         return model;
     }
 

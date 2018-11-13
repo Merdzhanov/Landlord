@@ -25,23 +25,6 @@ public class SqlUsersRepositoryImpl implements UsersRepository {
                     .getSingleResult();
             session.getTransaction().commit();
         }
-        ///result..setRating(getAverageRatingForUserByUsername(votedForUsername));
         return result;
     }
-//    @Override
-//    public List<User> getAllUsers() {
-//        List<User> result = new ArrayList<>();
-//        try (
-//                Session session = sessionFactory.openSession();
-//        ) {
-//            session.beginTransaction();
-//            result = session.createQuery("from User").list();
-//            session.getTransaction().commit();
-//        } catch (Exception e) {
-//            System.out.println(e.getMessage());
-//            throw new RuntimeException(e);
-//        }
-//        return result;
-//
-//    }
 }

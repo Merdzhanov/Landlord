@@ -1,18 +1,12 @@
 package com.landlord.models;
 
 import com.landlord.models.base.ModelBase;
-
-import com.mysql.jdbc.Blob;
-import org.hibernate.type.descriptor.sql.LobTypeMappings;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import javax.persistence.*;
 import java.math.BigDecimal;
-
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-
-import static org.hibernate.type.StandardBasicTypes.BLOB;
 
 @Entity
 @EnableAutoConfiguration
@@ -39,9 +33,6 @@ public class Estate implements ModelBase {
     @Column(name = "Address")
     private String address;
 
-//    @ManyToOne
-//    @JoinColumn(name = "UserID")
-//    private List<User> user;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name="UsersEstates",
@@ -59,13 +50,13 @@ public class Estate implements ModelBase {
     @Column(name = "DueDate")
     private Date dueDate;
 
-    @OneToMany(mappedBy = "estate")//,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "estate")
     private List<ChatMessage> messageList;
 
     public Estate() {
     }
 
-    public Estate(String description, byte[] image, String address, List<User> users, BigDecimal monthlyRent,BigDecimal owedAmount, Date dueDate, List<ChatMessage> messageList) {
+    public Estate(String description, byte[] image, String address, BigDecimal monthlyRent,BigDecimal owedAmount, Date dueDate, List<ChatMessage> messageList) {
         this.description = description;
         this.image=image;
         this.address = address;

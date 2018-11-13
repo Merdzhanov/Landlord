@@ -1,14 +1,7 @@
 package com.landlord.dto;
 
 import com.landlord.dto.base.DTOModelBase;
-import com.landlord.models.Estate;
-import com.landlord.models.User;
-import com.landlord.models.base.ModelBase;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-
-import javax.persistence.*;
 import java.util.Date;
-
 
 public class ChatMessageDTO extends DTOModelBase {
     public int id;
