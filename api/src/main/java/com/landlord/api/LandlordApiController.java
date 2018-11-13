@@ -16,10 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/")
@@ -95,7 +92,7 @@ public class LandlordApiController {
             value = "Rating/add",
             method = RequestMethod.POST
     )
-    public ResponseEntity<RatingVote> createChatMessage(@RequestBody RatingVoteDTO ratingVoteDTO) {
+    public ResponseEntity<RatingVote> createRatingVote(@RequestBody RatingVoteDTO ratingVoteDTO) {
          RatingVote ratingVoteCreated = this.landlordService.CreateRatingVoteByUsersVoterAndVotedFor(ratingVoteDTO);
 
         return ResponseEntity.status(HttpStatus.CREATED)

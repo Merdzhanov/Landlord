@@ -1,5 +1,6 @@
 package com.landlord.models;
 
+import com.landlord.dto.UserDTO;
 import com.landlord.models.base.ModelBase;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
