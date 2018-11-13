@@ -1,9 +1,13 @@
 package com.landlord.android.views.EstateDetails;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+
 import com.landlord.android.Constants;
 import com.landlord.android.R;
 import com.landlord.android.models.Estate;
@@ -19,6 +23,8 @@ import com.landlord.android.views.camera.CameraUtils;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+
+import static java.security.AccessController.getContext;
 
 public class EstateDetailsActivity extends BaseDrawerActivity implements MessagesListContracts.Navigator {
 
@@ -40,7 +46,7 @@ public class EstateDetailsActivity extends BaseDrawerActivity implements Message
 
     EstateDetailsFragmentPagerAdapter mEstateDetailsFragmentPagerAdapter;
     ViewPager mViewPager;
-
+Activity mActivity;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estate_details);
@@ -81,9 +87,30 @@ public class EstateDetailsActivity extends BaseDrawerActivity implements Message
         mViewPager.setAdapter(mEstateDetailsFragmentPagerAdapter);
 
         mViewPager.setCurrentItem(1);
+        mActivity=this;
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+            public void onPageSelected(int position) {
+                if(position!=0){
+                    hideKeyboard(mActivity);
+                }
+
+            }
+        });
         //mMessagesListPresenter.handler
     }
-
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
     @Override
     protected long getIdentifier() {
         return Constants.CREATE_IDENTIFIER;

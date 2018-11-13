@@ -42,6 +42,7 @@ public class EstatesListFragment
 
     private EstatesListContracts.Presenter mPresenter;
     private LinearLayoutManager mEstatesViewLayoutManager;
+    String mPattern;
 
     @Inject
     public EstatesListFragment() {
@@ -78,7 +79,7 @@ public class EstatesListFragment
 
     @Override
     public void showEstates(List<Estate> Estates) {
-        if(Estates.size()==1){
+        if(Estates.size()==1&&mPattern==null){
             onClick(Estates.get(0));
         }else {
             mEstatesAdapter.clear();
@@ -124,8 +125,8 @@ public class EstatesListFragment
 
     @OnTextChanged(R.id.et_filter)
     public void onTextChanged() {
-        String pattern = mFilterEditText.getText().toString();
-        mPresenter.filterEstates(pattern);
+        mPattern= mFilterEditText.getText().toString();
+        mPresenter.filterEstates(mPattern);
     }
 
     @Override

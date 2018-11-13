@@ -9,6 +9,7 @@ import com.landlord.android.LandlordApplication;
 import com.landlord.android.async.base.SchedulerProvider;
 import com.landlord.android.models.Estate;
 import com.landlord.android.services.base.EstatesService;
+import com.landlord.android.services.base.UsersService;
 
 import java.util.List;
 
@@ -22,15 +23,18 @@ public class EstatesListPresenter
         implements EstatesListContracts.Presenter {
 
     private final EstatesService mEstatesService;
+    private final UsersService mUsersService;
     private final SchedulerProvider mSchedulerProvider;
     private EstatesListContracts.View mView;
 
     @Inject
     public EstatesListPresenter(
             EstatesService EstatesService,
+            UsersService usersService,
             SchedulerProvider schedulerProvider) {
         mEstatesService = EstatesService;
         mSchedulerProvider = schedulerProvider;
+        mUsersService = usersService;
     }
 
     @Override
@@ -87,5 +91,10 @@ public class EstatesListPresenter
         } else {
             mView.showEstates(Estates);
         }
+    }
+
+    @Override
+    public UsersService getUsersService() {
+        return mUsersService;
     }
 }

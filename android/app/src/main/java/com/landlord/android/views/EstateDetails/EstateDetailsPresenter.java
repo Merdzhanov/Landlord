@@ -70,7 +70,6 @@ public class EstateDetailsPresenter
                 .doOnEach(x -> mView.hideLoading())
                 .doOnError(mView::showError)
                 .subscribe(s->loadEstate());
-
     }
 
 }

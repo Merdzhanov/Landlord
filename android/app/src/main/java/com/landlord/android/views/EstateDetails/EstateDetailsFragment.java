@@ -2,16 +2,23 @@ package com.landlord.android.views.EstateDetails;
 
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -86,10 +93,27 @@ public class EstateDetailsFragment
     @BindView(R.id.tv_rate_tenant)
     TextView mRateTenant;
 
+    View mView;
     ReviewListener mReviewListener;
     User mLandlord;
     User mTenant;
     private String mWhoRates;
+
+    Handler handler = new Handler();
+    // Define the code block to be executed
+    private Runnable runnableCode = new Runnable() {
+        @Override
+        public void run() {
+            // Do something here on the main thread
+            Log.d("Handlers", "Called on main thread");
+            refresh();
+            // Repeat this the same runnable code block again another 2 seconds
+            handler.postDelayed(runnableCode, 5000);
+        }
+        private void refresh() {
+            mPresenter.loadEstate();
+        }
+    };
 
     @Inject
     public EstateDetailsFragment() {
@@ -101,6 +125,8 @@ public class EstateDetailsFragment
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_estate_details, container, false);
         ButterKnife.bind(this, rootView);
+        mView=rootView;
+        hideKeyboardFrom(getContext(), mView);
         return rootView;
     }
 
@@ -109,6 +135,14 @@ public class EstateDetailsFragment
         super.onResume();
         mPresenter.subscribe(this);
         mPresenter.loadEstate();
+        hideKeyboardFrom(getContext(), mView);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        handler.post(runnableCode);
+        hideKeyboardFrom(getContext(), mView);
     }
 
     @Override
@@ -122,7 +156,7 @@ public class EstateDetailsFragment
         mDescriptionTextView.setMovementMethod(new ScrollingMovementMethod());
         mAddressTextView.setText("Address : " + Estate.getAddress());
         mMonthlyRentTextView.setText("Monthly Rent : " + Estate.getMonthlyRent().toString() + " BGN");
-        mOwedAmountTextView.setText("Owed Amount : " + Estate.getOwedAmount());
+        mOwedAmountTextView.setText("Owed Amount : " + Estate.getOwedAmount()  + " BGN");
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         //DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         Date dueDate=Estate.getDueDate();
@@ -131,7 +165,7 @@ public class EstateDetailsFragment
         Date today=new Date();
         long diffInMillies = dueDate.getTime() - today.getTime();
         TimeUnit timeUnit=TimeUnit.DAYS;
-        long daysLambda= timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS);
+        long daysLambda= timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS)+1;
         if(daysLambda<=5&&daysLambda>=-1){
             if(daysLambda>1){
                 mDueDateApproachingTextView.setText("   (in " + daysLambda + " days!)");
@@ -242,11 +276,16 @@ public class EstateDetailsFragment
     }
 
     @Override
-    public void onReview(int stars){//, User user) {
-        if(mWhoRates=="tenant"){
+    public void onReview(int stars) {//, User user) {
+        if (mWhoRates == "tenant") {
             mPresenter.setRating(mTenant, mLandlord, stars);
-        }else{
+        } else {
             mPresenter.setRating(mLandlord, mTenant, stars);
         }
+    }
+
+    public static void hideKeyboardFrom(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

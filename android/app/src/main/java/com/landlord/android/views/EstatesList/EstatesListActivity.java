@@ -57,6 +57,7 @@ public class EstatesListActivity
         mEstatesListFragment.setNavigator(this);
         mEstatesListFragment.setPresenter(mEstatesListPresenter);
 
+
         //FragmentTransaction transaction =
         getSupportFragmentManager()
                 .beginTransaction()
@@ -115,6 +116,7 @@ public class EstatesListActivity
     }
 
     private void startSignIn() {
-        startActivity(new Intent(this, LoginActivity.class));
+        Intent intent =new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }
