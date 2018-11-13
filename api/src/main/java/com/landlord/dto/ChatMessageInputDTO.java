@@ -2,9 +2,6 @@ package com.landlord.dto;
 
 import com.landlord.dto.base.DTOModelBase;
 
-import java.util.Date;
-
-
 public class ChatMessageInputDTO extends DTOModelBase {
     public String message;
     public String estateId;

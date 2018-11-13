@@ -21,11 +21,6 @@ public class GenericServiceImpl<T> implements GenericService {
           mGenericRepository.create(item);
     }
 
-//    @Override
-//    public ModelBase getById(int id) {
-//        return mGenericRepository.getById(id);
-//    }
-
     @Override
     public void update(int id, ModelBase item) {
         mGenericRepository.update(id, item);
@@ -35,19 +30,4 @@ public class GenericServiceImpl<T> implements GenericService {
     public void delete(ModelBase item) {
         mGenericRepository.delete(item);
     }
-
-//    @Override
-//    public void create(ModelBase item) {
-//
-//    }
-//
-//    @Override
-//    public void update(int id, ModelBase item) {
-//
-//    }
-//
-//    @Override
-//    public void delete(ModelBase item) {
-//
-//    }
 }

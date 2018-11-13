@@ -8,7 +8,6 @@ import com.landlord.services.base.GenericService;
 import com.landlord.utils.EstateMapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -17,8 +16,6 @@ public class EstateServiceImpl implements EstateService {
     private final EstatesRepository mEstatesRepository;
     private final EstateMapperImpl mEstateMapper;
     private final GenericService<Estate> mGenericService;
-   // private final GenericRepository<RatingVote> mGenericRepository;
-    // private final UserMapperImpl userMapper;
 
     @Autowired
     public EstateServiceImpl(
@@ -50,10 +47,4 @@ public class EstateServiceImpl implements EstateService {
         estate.setImage(estateInput.getImage());
         mGenericService.update(id,estate);
     }
-
-    //    @Override
-//    public List<Estate> getAllEstates() {
-//        return mEstatesRepository.getAllEstates();
-//    }
-
 }

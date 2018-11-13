@@ -35,22 +35,4 @@ public class ChatMessagesApiController {
     public void createChatMessage(@RequestBody ChatMessageInputDTO chatMessageInputDTO) {
         mMessageService.create(chatMessageInputDTO);
     }
-
-    //    @RequestMapping(
-//            path = "Messages",
-//            method = RequestMethod.GET
-//    )
-//    public List<ChatMessageDTO> getAllMessages() {
-//        List<ChatMessage> models = this.landlordService.getAllMessages();
-//        return this.chatMessageMapper.mapMany(models);
-//    }
-
-//    @RequestMapping(
-//            value = "Messages/Estate/{estateName}",
-//            method = RequestMethod.GET
-//    )
-//    public List<ChatMessageDTO> getMessagesByEstate(@PathVariable("estateName") String estateName) {
-//        List<ChatMessage> models = this.landlordService.getMessagesByEstate(estateName);
-//        return this.chatMessageMapper.mapMany(models);
-//    }
 }

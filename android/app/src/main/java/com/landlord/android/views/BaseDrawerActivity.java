@@ -34,10 +34,10 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
                 .withIcon(android.R.drawable.ic_input_get)
                 .withName("Home");
 
-        PrimaryDrawerItem createEstateItem = new PrimaryDrawerItem()
-                .withIdentifier(Constants.CREATE_IDENTIFIER)
-                .withIcon(android.R.drawable.btn_plus)
-                .withName("Create Estate");
+//        PrimaryDrawerItem createEstateItem = new PrimaryDrawerItem()
+//                .withIdentifier(Constants.CREATE_IDENTIFIER)
+//                .withIcon(android.R.drawable.btn_plus)
+//                .withName("Create Estate");
 
         PrimaryDrawerItem logoutItem = new PrimaryDrawerItem()
                 .withIdentifier(Constants.LOGOUT_IDENTIFIER)
@@ -49,8 +49,8 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
                 .withToolbar(mToolbar)
                 .addDrawerItems(
                         listEstatesItem,
-                        new DividerDrawerItem(),
-                        createEstateItem ,
+//                        new DividerDrawerItem(),
+//                        createEstateItem ,
                         new DividerDrawerItem(),
                         logoutItem
                 )

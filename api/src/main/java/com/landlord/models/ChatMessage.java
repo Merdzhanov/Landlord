@@ -4,7 +4,6 @@ import com.landlord.models.base.ModelBase;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -23,11 +22,11 @@ public class ChatMessage implements ModelBase {
     @Column(name="Date")
     private Date date;
 
-    @ManyToOne//(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "EstateID")
     private Estate estate;
 
-    @ManyToOne//(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "UserID")
     private User sender;
 
@@ -39,7 +38,7 @@ public class ChatMessage implements ModelBase {
         this.message = message;
         this.estate = estate;
         this.sender = sender;
-        this.date= new Date();//LocalDateTime.now();
+        this.date= new Date();
     }
 
     public ChatMessage(String message, Date date, Estate estate, User sender) {

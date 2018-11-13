@@ -1,13 +1,6 @@
 package com.landlord.dto;
 
 import com.landlord.dto.base.DTOModelBase;
-import com.landlord.models.ChatMessage;
-import com.landlord.models.User;
-import com.landlord.models.base.ModelBase;
-import com.mysql.jdbc.Blob;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.LinkedList;

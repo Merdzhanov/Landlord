@@ -1,11 +1,8 @@
 package com.landlord.dto;
 
 import com.landlord.dto.base.DTOModelBase;
-import com.landlord.models.User;
 import com.landlord.models.base.ModelBase;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
-import javax.persistence.*;
 import java.util.Date;
 
 public class RatingVoteDTO extends DTOModelBase implements ModelBase {
@@ -20,7 +17,7 @@ public class RatingVoteDTO extends DTOModelBase implements ModelBase {
     }
 
     public RatingVoteDTO(Integer ratingVoted, String voter, String votedForUser) {
-    //public RatingVote(float ratingVoted, User votedForUser, Date votingDate) {
+        //public RatingVote(float ratingVoted, User votedForUser, Date votingDate) {
         this.ratingVoted = ratingVoted;
         this.voterUsername = voter;
         this.votedForUserUsername = votedForUser;

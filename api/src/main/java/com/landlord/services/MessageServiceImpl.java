@@ -40,15 +40,4 @@ public class MessageServiceImpl implements MessageService {
     public void create(ChatMessageInputDTO chatMessageInputDTO) {
         mGenericService.create(mChatMessageInputMapper.map(chatMessageInputDTO));
     }
-
-//    @Override
-//    public List<ChatMessage>  getAllMessages() {
-//        return this.landlordRepository.getAllMessages();
-//    }
-
-//    @Override
-//    public List<ChatMessage> getMessagesByEstate(String estateName) {
-//        return this.landlordRepository.getMessagesByEstate(estateName);
-//    }
-
 }

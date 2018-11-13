@@ -32,8 +32,7 @@ public class User implements ModelBase {
     @Column(name="UserType")
     private UserType userType;
 
-    //@OneToMany(mappedBy = "user")
-    @ManyToMany//(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
             name="UsersEstates",
             joinColumns = @JoinColumn(name="UserID"),
@@ -41,17 +40,11 @@ public class User implements ModelBase {
     )
     private List<Estate> estates;
 
-    @OneToMany(mappedBy = "sender")//,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "sender")
     private List<ChatMessage> messages;
 
-   // @OneToMany(mappedBy = "voter")//,fetch = FetchType.EAGER)
-    //@JoinColumn(name = "UserID",fetch = FetchType.EAGER)
-   // private List<RatingVote> votedFor;
-
-    @OneToMany(mappedBy = "votedForUser")//,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "votedForUser")
     private List<RatingVote> ratingVotes;
-
-
 
     public User() {
 
@@ -66,7 +59,6 @@ public class User implements ModelBase {
         this.userType = userType;
         this.estates = new ArrayList<Estate>();
         this.messages = new LinkedList<ChatMessage>();
-//        this.votedFor = new ArrayList<RatingVote>();
         this.ratingVotes = new ArrayList<RatingVote>();
     }
 
@@ -93,14 +85,6 @@ public class User implements ModelBase {
         this.lastName = lastName;
     }
 
-//    public List<RatingVote> getVotedFor() {
-//        return votedFor;
-//    }
-//
-//    public void setVotedFor(List<RatingVote> votedFor) {
-//        this.votedFor = votedFor;
-//    }
-
     public List<RatingVote> getRatingVotes() {
         return ratingVotes;
     }
@@ -126,25 +110,11 @@ public class User implements ModelBase {
     }
 
     public float getRating() {
-//        List<RatingVote> ratingVotes= getRatingVotes();
-//        int sum = 0;
-//        for (RatingVote rv:ratingVotes
-//             ) {
-//            sum+=rv.getRatingVoted();
-//        }
-//        return (float)sum/ratingVotes.size();
         return rating;
     }
 
     public void setRating(float rating)
     {
-//        List<RatingVote> ratingVotes= getRatingVotes();
-//        int sum = 0;
-//        for (RatingVote rv:ratingVotes
-//        ) {
-//            sum+=rv.getRatingVoted();
-//        }
-//        this.rating = (float)sum/ratingVotes.size();
         this.rating=rating;
     }
 

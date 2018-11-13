@@ -9,17 +9,6 @@ import java.util.stream.Collectors;
 
 @Component
 public class UserMapperImpl  implements DTOMapper<User, UserDTO> {
-//    private final EstateMapperImpl estateMapper;
-//    private final ChatMessageMapperImpl chatMessageMapper;
-//
-//    @Autowired
-//    public UserMapperImpl(
-//            EstateMapperImpl estateMapper,
-//            ChatMessageMapperImpl chatMessageMapper
-//    ) {
-//        this.estateMapper = estateMapper;
-//        this.chatMessageMapper = chatMessageMapper;
-//    }
 
     @Override
     public UserDTO map(User model) {
@@ -30,8 +19,6 @@ public class UserMapperImpl  implements DTOMapper<User, UserDTO> {
         dtoModel.lastName=model.getLastName();
         dtoModel.rating = model.getRating();
         dtoModel.userType = model.getUserType();
-        //dtoModel.estates = estateMapper.mapMany(model.getEstates());
-        //dtoModel.messages = chatMessageMapper.mapMany(model.getMessages());
         return dtoModel;
     }
 
@@ -44,8 +31,6 @@ public class UserMapperImpl  implements DTOMapper<User, UserDTO> {
         model.setLastName(dtoModel.lastName);
         model.setRating(dtoModel.rating);
         model.setUserType(dtoModel.userType);
-        //model.setEstates(estateMapper.mapManyToModel(dtoModel.getEstates()));
-        //model.setMessages(chatMessageMapper.mapManyToModel(dtoModel.getMessages()));
         return model;
     }
 

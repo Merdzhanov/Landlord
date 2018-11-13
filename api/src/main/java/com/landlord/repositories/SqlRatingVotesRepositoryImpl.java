@@ -1,17 +1,11 @@
 package com.landlord.repositories;
 
-import com.landlord.models.ChatMessage;
-import com.landlord.models.Estate;
 import com.landlord.models.RatingVote;
-import com.landlord.models.User;
-import com.landlord.models.base.ModelBase;
-import com.landlord.repositories.base.GenericRepository;
 import com.landlord.repositories.base.RatingVotesRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,12 +46,9 @@ public class SqlRatingVotesRepositoryImpl implements RatingVotesRepository {
                 Session session = sessionFactory.openSession();
         ) {
             session.beginTransaction();
-
-           // ratingVotes = session.createQuery("select avg(RV.ratingVoted) " +
             ratingVotes = session.createQuery("from RatingVote as RV where RV.votedForUser.userName=:votedForUsername")
                     .setParameter("votedForUsername", votedForUsername)
                     .list();
-//                  .get  .getFirstResult();
             int sum=0;
             for (RatingVote rv:ratingVotes
                  ) {
@@ -67,7 +58,6 @@ public class SqlRatingVotesRepositoryImpl implements RatingVotesRepository {
 
             session.getTransaction().commit();
         }
-
         return averageRating;
     }
 }

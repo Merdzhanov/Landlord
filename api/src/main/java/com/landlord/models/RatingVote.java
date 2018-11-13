@@ -2,7 +2,6 @@ package com.landlord.models;
 
 import com.landlord.models.base.ModelBase;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -19,12 +18,10 @@ public class RatingVote implements ModelBase {
     @Column(name="RatingVoted")
     public float ratingVoted;
 
-//    @ManyToOne//(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "UserName")
     @Column(name="Voter")
     private String voter;
 
-    @ManyToOne//(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "UserID")
     public User votedForUser;
 
@@ -35,7 +32,6 @@ public class RatingVote implements ModelBase {
     }
 
     public RatingVote(float ratingVoted, String voter,User votedForUser, Date votingDate) {
-    //public RatingVote(float ratingVoted, User votedForUser, Date votingDate) {
         this.ratingVoted = ratingVoted;
         this.voter = voter;
         this.votedForUser = votedForUser;
@@ -59,14 +55,6 @@ public class RatingVote implements ModelBase {
     public void setRatingVoted(float ratingVoted) {
         this.ratingVoted = ratingVoted;
     }
-
-//    public User getVoter() {
-//        return voter;
-//    }
-//
-//    public void setVoter(User voter) {
-//        this.voter = voter;
-//    }
 
     public String getVoter() {
         return voter;

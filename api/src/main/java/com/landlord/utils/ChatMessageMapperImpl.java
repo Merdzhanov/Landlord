@@ -5,23 +5,18 @@ import com.landlord.models.ChatMessage;
 import com.landlord.utils.base.DTOMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-//@Scope("prototype")
 public class ChatMessageMapperImpl implements DTOMapper<ChatMessage, ChatMessageDTO> {
     private final UserMapperImpl userMapper;
-    //private final EstateMapperImpl estateMapper;
 
     @Autowired()
     public ChatMessageMapperImpl(
-            UserMapperImpl userMapper//,
-    //        EstateMapperImpl estateMapper
+            UserMapperImpl userMapper
     ) {
         this.userMapper = userMapper;
-    //    this.estateMapper = estateMapper;
     }
 
     @Override
@@ -30,7 +25,6 @@ public class ChatMessageMapperImpl implements DTOMapper<ChatMessage, ChatMessage
         dtoModel.id=model.getId();
         dtoModel.message=model.getMessage();
         dtoModel.date=model.getDate();
-        //dtoModel.estate=estateMapper.map(model.getEstate());
         dtoModel.sender=userMapper.map(model.getSender());
         return dtoModel;
     }
@@ -41,7 +35,6 @@ public class ChatMessageMapperImpl implements DTOMapper<ChatMessage, ChatMessage
         model.setId(dtoModel.id);
         model.setMessage(dtoModel.message);
         model.setDate(dtoModel.date);
-        //model.setEstate(estateMapper.map(dtoModel.estate));
         model.setSender(userMapper.map(dtoModel.sender));
         return model;
     }

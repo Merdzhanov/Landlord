@@ -3,6 +3,7 @@ package com.landlord.android.diconfig;
 import com.landlord.android.views.EstateCreate.EstateCreateActivity;
 import com.landlord.android.views.EstateDetails.EstateDetailsActivity;
 import com.landlord.android.views.EstatesList.EstatesListActivity;
+import com.landlord.android.views.Login.LoginActivity;
 import com.landlord.android.views.MessagesList.MessagesListActivity;
 
 import dagger.Module;
@@ -33,5 +34,11 @@ public abstract class ActivityBindingModule {
             modules = MessagesListModule.class
     )
     abstract MessagesListActivity messagesListActivity();
+
+//    @ActivityScoped
+//    @ContributesAndroidInjector(
+//            modules = LoginModule.class
+//    )
+//    abstract LoginActivity LoginActivity();
 
 }
