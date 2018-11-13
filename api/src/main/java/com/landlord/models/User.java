@@ -2,8 +2,13 @@ package com.landlord.models;
 
 import com.landlord.models.base.ModelBase;
 import com.landlord.models.base.UserType;
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import com.landlord.Constants;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,23 +17,30 @@ import java.util.List;
 @EnableAutoConfiguration
 @Table(name = "Users")
 public class User implements ModelBase {
+
     @Id
     @GeneratedValue
     @Column(name = "UserID")
     private int id;
 
+    @NotNull
+    @UniqueElements
+    @Size(min = Constants.USERNAME_VALIDATION_MIN_VALUE, max = Constants.USERNAME_VALIDATION_MAX_VALUE)
     @Column(name = "UserName")
     private String userName;
 
+    @NotNull
     @Column(name = "FirstName")
     private String firstName;
 
+    @NotNull
     @Column(name = "LastName")
     private String lastName;
 
     @Column(name="Rating")
     public float rating;
 
+    @NotNull
     @Column(name="UserType")
     private UserType userType;
 

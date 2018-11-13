@@ -4,6 +4,7 @@ import com.landlord.models.base.ModelBase;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -15,18 +16,22 @@ public class ChatMessage implements ModelBase {
     @Column(name = "MessageID", updatable = false, nullable = false, insertable=false)
     public int id;
 
+    @NotNull
     @Column(name="Text")
     private String message;
 
+    @NotNull
     //@GeneratedValue
     @Column(name="Date")
     private Date date;
 
     @ManyToOne
+    @NotNull
     @JoinColumn(name = "EstateID")
     private Estate estate;
 
     @ManyToOne
+    @NotNull
     @JoinColumn(name = "UserID")
     private User sender;
 

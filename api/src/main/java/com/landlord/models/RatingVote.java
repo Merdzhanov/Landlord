@@ -3,6 +3,7 @@ package com.landlord.models;
 import com.landlord.models.base.ModelBase;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -15,16 +16,20 @@ public class RatingVote implements ModelBase {
     @Column(name = "RatingVoteID")
     private int id;
 
+    @NotNull
     @Column(name="RatingVoted")
     public float ratingVoted;
 
+    @NotNull
     @Column(name="Voter")
     private String voter;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "UserID")
     public User votedForUser;
 
+    @NotNull
     @Column(name = "VotingDate")
     public Date votingDate;
 
