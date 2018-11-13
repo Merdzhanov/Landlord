@@ -15,19 +15,19 @@ public class User implements ModelBase {
     @Id
     @GeneratedValue
     @Column(name = "UserID")
-    public int id;
+    private int id;
 
     @Column(name = "UserName")
-    public String userName;
+    private String userName;
 
     @Column(name = "FirstName")
-    public String firstName;
+    private String firstName;
 
     @Column(name = "LastName")
-    public String lastName;
+    private String lastName;
 
     @Column(name="Rating")
-    private float rating;
+    public float rating;
 
     @Column(name="UserType")
     private UserType userType;
@@ -119,11 +119,26 @@ public class User implements ModelBase {
     }
 
     public float getRating() {
+//        List<RatingVote> ratingVotes= getRatingVotes();
+//        int sum = 0;
+//        for (RatingVote rv:ratingVotes
+//             ) {
+//            sum+=rv.getRatingVoted();
+//        }
+//        return (float)sum/ratingVotes.size();
         return rating;
     }
 
-    public void setRating(float rating) {
-        this.rating = rating;
+    public void setRating(float rating)
+    {
+//        List<RatingVote> ratingVotes= getRatingVotes();
+//        int sum = 0;
+//        for (RatingVote rv:ratingVotes
+//        ) {
+//            sum+=rv.getRatingVoted();
+//        }
+//        this.rating = (float)sum/ratingVotes.size();
+        this.rating=rating;
     }
 
     public UserType getUserType() {

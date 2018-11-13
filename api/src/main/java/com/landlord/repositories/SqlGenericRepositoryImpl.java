@@ -56,7 +56,7 @@ public class SqlGenericRepositoryImpl<T> implements GenericRepository {
                 Session session = sessionFactory.openSession();
         ) {
             session.beginTransaction();
-            object = session.get(ModelBase.class, id);
+            object = session.get(item.getClass(), id);
             FieldCopyUtil.setFields(item, object);
             session.update(object);
             session.getTransaction().commit();
@@ -67,13 +67,13 @@ public class SqlGenericRepositoryImpl<T> implements GenericRepository {
     }
 
     @Override
-    public void delete(int id) {
-        ModelBase object = null;
+    public void delete(ModelBase object) {
+        //ModelBase object = null;
         try (
                 Session session = sessionFactory.openSession();
         ) {
             session.beginTransaction();
-            object = session.get(ModelBase.class, id);
+            object = session.get(object.getClass(), object.getId());
             session.delete(object);
             session.getTransaction().commit();
         } catch (Exception e) {

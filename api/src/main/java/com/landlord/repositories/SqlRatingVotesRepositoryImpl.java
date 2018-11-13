@@ -47,14 +47,23 @@ public class SqlRatingVotesRepositoryImpl implements RatingVotesRepository {
     @Override
     public float getAverageRatingForUserByUsername(String votedForUsername) {
         float averageRating= 0;
+        List<RatingVote> ratingVotes = new ArrayList<>();
         try (
                 Session session = sessionFactory.openSession();
         ) {
             session.beginTransaction();
 
-            averageRating = session.createQuery("select AVG (RV.ratingVoted) from RatingVote as RV where RV.votedForUser.userName=:votedForUsername")
+           // ratingVotes = session.createQuery("select avg(RV.ratingVoted) " +
+            ratingVotes = session.createQuery("from RatingVote as RV where RV.votedForUser.userName=:votedForUsername")
                     .setParameter("votedForUsername", votedForUsername)
-                    .getFirstResult();
+                    .list();
+//                  .get  .getFirstResult();
+            int sum=0;
+            for (RatingVote rv:ratingVotes
+                 ) {
+                sum+=rv.getRatingVoted();
+            }
+            averageRating = (float)sum/ratingVotes.size();
 
             session.getTransaction().commit();
         }
