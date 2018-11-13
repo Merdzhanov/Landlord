@@ -62,6 +62,13 @@ public class User implements ModelBase {
         this.ratingVotes = new ArrayList<RatingVote>();
     }
 
+    public User(int id , String userName, float rating, UserType userType) {
+        this.id = id;
+        this.userName=userName;
+        this.rating = rating;
+        this.userType = userType;
+    }
+
     public String getFirstName() {
         return firstName;
     }

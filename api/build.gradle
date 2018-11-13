@@ -21,12 +21,16 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    maven {
+        url "http://www.evosuite.org/m2"
+    }
 }
-
 
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation('org.springframework.boot:spring-boot-starter-test') 
     compile group: 'org.hibernate', name: 'hibernate-gradle-plugin', version: '5.3.2.Final'
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
+//    testCompile 'org.evosuite:evosuite-standalone-runtime:1.0.1'              // Auto create evo tests
+    compile group: 'org.evosuite', name: 'evosuite-runtime', version: '1.0.6'   // Execute evo tests 
 }
