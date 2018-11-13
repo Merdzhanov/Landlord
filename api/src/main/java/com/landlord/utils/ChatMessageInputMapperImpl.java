@@ -1,45 +1,48 @@
 package com.landlord.utils;
 
-import com.landlord.dto.ChatMessageDTO;
 import com.landlord.dto.ChatMessageInputDTO;
 import com.landlord.models.ChatMessage;
-import com.landlord.services.base.LandlordService;
+import com.landlord.models.Estate;
+import com.landlord.services.base.EstateService;
+import com.landlord.services.base.GenericService;
+import com.landlord.services.base.UserService;
 import com.landlord.utils.base.DTOMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 //@Scope("prototype")
 public class ChatMessageInputMapperImpl implements DTOMapper<ChatMessage, ChatMessageInputDTO> {
-    private LandlordService mLandlordService;
-//    private final UserMapperImpl userMapper;
+    //private EstateService mLandlordService;
+    private GenericService mGenericService;
+    private UserService mUserService;
+    private EstateService mEstateService;
+    private final UserMapperImpl mUserMapper;
+    private final EstateMapperImpl mEstateMapper;
     //private final EstateMapperImpl estateMapper;
 
     @Autowired()
     public ChatMessageInputMapperImpl(
-            LandlordService landlordService
-            //UserMapperImpl userMapper//,
+            GenericService genericService,
+            UserService userService,
+            UserMapperImpl userMapper,
+            EstateService estateService,
+            EstateMapperImpl estateMapper
     //        EstateMapperImpl estateMapper
     ) {
-        mLandlordService=landlordService;
-       // this.userMapper = userMapper;
+        mGenericService=genericService;
+        mUserService=userService;
+        mUserMapper = userMapper;
+        mEstateService = estateService;
+        mEstateMapper = estateMapper;
     //    this.estateMapper = estateMapper;
     }
 
     @Override
     public ChatMessageInputDTO map(ChatMessage model) {
-//        ChatMessageDTO dtoModel = new ChatMessageDTO();
-//        dtoModel.id=model.getId();
-//        dtoModel.message=model.getMessage();
-//        dtoModel.date=model.getDate();
-//        //dtoModel.estate=estateMapper.map(model.getEstate());
-//        dtoModel.sender=userMapper.map(model.getSender());
-//        return dtoModel;
         return null;
     }
 
@@ -49,8 +52,8 @@ public class ChatMessageInputMapperImpl implements DTOMapper<ChatMessage, ChatMe
         //model.setId(dtoModel.id);
         model.setMessage(dtoModel.message);
         model.setDate(new Date());
-        model.setEstate(mLandlordService.getEstateByID(Integer.parseInt(dtoModel.estateId)));
-        model.setSender(mLandlordService.getByUserName(dtoModel.messageSenderUsername));
+        model.setEstate(mEstateMapper.map(mEstateService.getEstateByID(Integer.parseInt(dtoModel.estateId))));
+        model.setSender(mUserService.getByUserName(dtoModel.messageSenderUsername));
         return model;
     }
 

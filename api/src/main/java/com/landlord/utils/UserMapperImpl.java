@@ -2,9 +2,7 @@ package com.landlord.utils;
 
 import com.landlord.dto.UserDTO;
 import com.landlord.models.User;
-import com.landlord.services.base.LandlordService;
 import com.landlord.utils.base.DTOMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;

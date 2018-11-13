@@ -1,10 +1,11 @@
 package com.landlord.utils;
 
-import com.landlord.dto.ChatMessageInputDTO;
 import com.landlord.dto.RatingVoteDTO;
-import com.landlord.models.ChatMessage;
 import com.landlord.models.RatingVote;
-import com.landlord.services.base.LandlordService;
+import com.landlord.models.User;
+import com.landlord.services.base.EstateService;
+import com.landlord.services.base.RatingVoteService;
+import com.landlord.services.base.UserService;
 import com.landlord.utils.base.DTOMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,37 +16,38 @@ import java.util.List;
 @Component
 //@Scope("prototype")
 public class VotingInputMapperImpl implements DTOMapper<RatingVote, RatingVoteDTO> {
-    private LandlordService mLandlordService;
+   // private final RatingVoteService mRatingVoteService;
+    //private final UserService mUserService;
 
     @Autowired()
     public VotingInputMapperImpl(
-            LandlordService landlordService
-            //UserMapperImpl userMapper//,
-    //        EstateMapperImpl estateMapper
+     //       RatingVoteService ratingVoteService,
+      //      UserService userService
     ) {
-        mLandlordService=landlordService;
-       // this.userMapper = userMapper;
-    //    this.estateMapper = estateMapper;
+       // mRatingVoteService=ratingVoteService;
+        //mUserService=userService;
     }
 
     @Override
     public RatingVoteDTO map(RatingVote model) {
-//        ChatMessageDTO dtoModel = new ChatMessageDTO();
-//        dtoModel.id=model.getId();
-//        dtoModel.message=model.getMessage();
-//        dtoModel.date=model.getDate();
-//        //dtoModel.estate=estateMapper.map(model.getEstate());
-//        dtoModel.sender=userMapper.map(model.getSender());
-//        return dtoModel;
         return null;
     }
 
     @Override
     public RatingVote map(RatingVoteDTO dtoModel) {
-        //String voterUsername=dtoModel.getVoterUsername();
-        //String votedForUsername=dtoModel.getVotedForUserUsername();
-        RatingVote ratingVote=mLandlordService.CreateRatingVoteByUsersVoterAndVotedFor(dtoModel);
-        return ratingVote;
+//        String voterUserName=dtoModel.getVoterUsername();
+//        String votedForUsername=dtoModel.getVotedForUserUsername();
+//        User votedForUser=mUserService.getByUserName(votedForUsername);
+//        RatingVote ratingVoteToReturn=mRatingVoteService.getRatingVoteByUsersVoterAndVotedFor(voterUserName,votedForUsername);
+//        if(ratingVoteToReturn==null){
+//            ratingVoteToReturn=new RatingVote();
+//            ratingVoteToReturn.setVoter(voterUserName);
+//            ratingVoteToReturn.setVotedForUser(votedForUser);
+//        }
+//        ratingVoteToReturn.setRatingVoted(dtoModel.getRatingVoted());
+//        ratingVoteToReturn.setVotingDate(new Date());
+//        votedForUser.setRating(mRatingVoteService.getAverageRatingForUserByUsername(votedForUsername));
+        return null;
     }
 
     @Override

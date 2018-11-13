@@ -1,17 +1,11 @@
 package com.landlord.utils;
 
 import com.landlord.dto.ChatMessageDTO;
-import com.landlord.dto.EstateDTO;
-import com.landlord.dto.UserDTO;
 import com.landlord.models.ChatMessage;
-import com.landlord.models.User;
-import com.landlord.services.base.LandlordService;
 import com.landlord.utils.base.DTOMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
